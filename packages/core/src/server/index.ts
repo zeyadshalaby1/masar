@@ -302,7 +302,7 @@ export function createServer(input: ServerInput): MasarServer {
     const definition = (exports as { default?: unknown }).default
     if (!isSchedule(definition)) {
       throw new MasarError(`src/modules/${info.name}/schedule.ts must export default defineSchedule(...)`, {
-        hint: "import { defineSchedule } from '@masar/core', then export default defineSchedule((s) => { s.every('day').at('03:00').run(myJob) })",
+        hint: "import { defineSchedule } from 'masar', then export default defineSchedule((s) => { s.every('day').at('03:00').run(myJob) })",
       })
     }
     definition.tasks.forEach((task, index) => tasks.push({ ...task, name: `${info.name}.${task.name ?? (isJob(task.target) ? task.target.name : `task${index + 1}`)}` }))
@@ -322,7 +322,7 @@ export function createServer(input: ServerInput): MasarServer {
     const migration = (exports as { default?: Migration }).default
     if (migration?.__masar !== 'migration') {
       throw new MasarError(`${path} must export default defineMigration({ up })`, {
-        hint: "import { defineMigration } from '@masar/core', then export default defineMigration({ async up(m) { ... } })",
+        hint: "import { defineMigration } from 'masar', then export default defineMigration({ async up(m) { ... } })",
       })
     }
     planned.push({ id: `${info.name}/${file}`, connection: info.store, migration })
@@ -601,7 +601,7 @@ ${outbox().length === 0 ? '<p style="color:#625953">Nothing sent yet.</p>' : ''}
     const definition = (exports as { default?: unknown }).default
     if (!isRoutesDefinition(definition)) {
       throw new MasarError(`src/modules/${info.name}/routes.ts must export default defineRoutes(...)`, {
-        hint: "import { defineRoutes } from '@masar/core' and export default defineRoutes((r) => { ... })",
+        hint: "import { defineRoutes } from 'masar' and export default defineRoutes((r) => { ... })",
       })
     }
     for (const route of definition.routes) {
@@ -774,7 +774,7 @@ ${outbox().length === 0 ? '<p style="color:#625953">Nothing sent yet.</p>' : ''}
         const definition = (mod as { default?: unknown }).default
         if (!isSeed(definition)) {
           throw new MasarError(`src/modules/${info.name}/seeds.ts must export default defineSeed(...)`, {
-            hint: "import { defineSeed } from '@masar/core', then export default defineSeed(async ({ fake }) => { ... })",
+            hint: "import { defineSeed } from 'masar', then export default defineSeed(async ({ fake }) => { ... })",
           })
         }
         seeds.set(info.name, definition)

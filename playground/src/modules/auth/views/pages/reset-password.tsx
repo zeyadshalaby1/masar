@@ -1,4 +1,4 @@
-import { Link, router, useAction, usePage, useT } from '@masar/core/react'
+import { Link, router, useAction, usePage, useT } from 'masar/react'
 import { resetPassword } from '../../actions'
 import { AuthCard } from '../components/AuthCard'
 

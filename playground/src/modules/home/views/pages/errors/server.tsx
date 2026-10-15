@@ -1,4 +1,4 @@
-import { MasarError } from '@masar/core'
+import { MasarError } from 'masar'
 
 /** /errors/server: a load() that fails with a hint, to see the server error page. */
 export async function load() {

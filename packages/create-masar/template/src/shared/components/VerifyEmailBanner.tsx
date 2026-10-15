@@ -1,4 +1,4 @@
-import { useAction, useMasar, useT } from '@masar/core/react'
+import { useAction, useMasar, useT } from 'masar/react'
 import { useState } from 'react'
 import { resendVerification } from '@/modules/auth/actions'
 

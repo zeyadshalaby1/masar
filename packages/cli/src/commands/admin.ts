@@ -29,8 +29,8 @@ export async function makeAdminPage(title: string, options: { icon?: string; gro
   mkdirSync(dir, { recursive: true })
   writeFileSync(
     file,
-    `import { AdminPage, Card, Chart, StatCard, useAdminT } from '@masar/core/admin'
-import type { AdminPageMeta } from '@masar/core/admin'
+    `import { AdminPage, Card, Chart, StatCard, useAdminT } from 'masar/admin'
+import type { AdminPageMeta } from 'masar/admin'
 
 // Shown in the admin sidebar. Icons: any Lucide name in kebab-case (https://lucide.dev/icons).
 export const admin: AdminPageMeta = { title: '${title.replace(/'/g, "\\'")}', icon: '${icon}'${options.group ? `, group: '${options.group.replace(/'/g, "\\'")}'` : ''} }
@@ -71,7 +71,7 @@ export async function userRole(email: string, role: string) {
   try {
     // Through the app's own module graph, so db() uses the connections the app configured.
     const runner = (vite.environments.ssr as unknown as { runner: { import(id: string): Promise<unknown> } }).runner
-    const { db, users } = (await runner.import('@masar/core')) as typeof import('@masar/core')
+    const { db, users } = (await runner.import('masar')) as typeof import('masar')
     const user = await db(users).where({ email: email.trim().toLowerCase() }).first()
     if (!user) throw Object.assign(new Error(`No user with email ${email}`), { hint: 'Sign up in the app first (/register), then run this again.' })
     await db(users).update(user.id, { role })

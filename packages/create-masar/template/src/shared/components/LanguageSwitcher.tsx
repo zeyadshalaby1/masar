@@ -1,4 +1,4 @@
-import { useLocale, useT } from '@masar/core/react'
+import { useLocale, useT } from 'masar/react'
 import { Languages } from 'lucide-react'
 import { Button } from '@/shared/ui/button'
 

@@ -1,1 +1,1 @@
-export { AdminLayout as default } from '@masar/core/admin'
+export { AdminLayout as default } from 'masar/admin'

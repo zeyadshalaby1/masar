@@ -1,4 +1,4 @@
-import { defineResource, users } from '@masar/core'
+import { defineResource, users } from 'masar'
 
 export default defineResource(users, {
   icon: 'users',

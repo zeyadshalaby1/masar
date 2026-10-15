@@ -84,7 +84,7 @@ export function createAdmin(input: AdminInput) {
     const definition = (mod as { default?: ResourceDefinition }).default
     if (definition?.__masar !== 'resource') {
       throw new MasarError(`${path.replace(/^.*src\//, 'src/')} must export default defineResource(model, { ... })`, {
-        hint: "import { defineResource } from '@masar/core', then export default defineResource(courses, { icon: 'book-open' })",
+        hint: "import { defineResource } from 'masar', then export default defineResource(courses, { icon: 'book-open' })",
       })
     }
     definitions.set(definition.model.table, definition)

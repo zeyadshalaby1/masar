@@ -34,7 +34,7 @@ export function names(raw: string) {
 type Names = ReturnType<typeof names>
 
 function moduleFile(n: Names, o: ModuleOptions) {
-  return `import { defineModule } from '@masar/core'
+  return `import { defineModule } from 'masar'
 
 export default defineModule({
   name: '${n.module}',
@@ -46,7 +46,7 @@ ${o.store ? `  store: '${o.store}',\n` : `  // store: 'main',        // database
 }
 
 function schemaFile(n: Names) {
-  return `import { f, model } from '@masar/core'
+  return `import { f, model } from 'masar'
 
 /**
  * Every model gets id, createdAt and updatedAt automatically.
@@ -60,7 +60,7 @@ export const ${n.plural} = model('${n.table}', {
 }
 
 function crudActions(n: Names) {
-  return `import { action, db, t, z } from '@masar/core'
+  return `import { action, db, t, z } from 'masar'
 import { ${n.plural} } from './schema'
 
 const ${n.single}Input = z.object({
@@ -116,7 +116,7 @@ export const delete${n.Single} = action({
 }
 
 function basicActions(n: Names) {
-  return `import { action, z } from '@masar/core'
+  return `import { action, z } from 'masar'
 
 /** Business logic lives in actions. Pages call them directly, on the server or in the browser. */
 export const greet = action({
@@ -134,7 +134,7 @@ function routesFile(n: Names, o: ModuleOptions) {
   r.get('/export.json', async (c) => c.json(await list${n.Plural}()))`
     : `  // GET /${n.module}/ping
   r.get('/ping', (c) => c.json({ ok: true }))`
-  return `import { defineRoutes } from '@masar/core'
+  return `import { defineRoutes } from 'masar'
 ${o.crud ? `import { list${n.Plural} } from './actions'\n` : ''}
 /**
  * Extra HTTP routes (webhooks, downloads, custom endpoints).
@@ -148,7 +148,7 @@ ${example}
 }
 
 function formComponent(n: Names) {
-  return `import { useT } from '@masar/core/react'
+  return `import { useT } from 'masar/react'
 import type { FormEvent } from 'react'
 import { Button } from '@/shared/ui/button'
 import { Input } from '@/shared/ui/input'
@@ -215,8 +215,8 @@ export function ${n.Single}Form({ defaultValues, submitLabel, pending, errors, e
 }
 
 function indexPage(n: Names) {
-  return `import type { LoadContext } from '@masar/core'
-import { Link, router, useAction, useT, type PageProps } from '@masar/core/react'
+  return `import type { LoadContext } from 'masar'
+import { Link, router, useAction, useT, type PageProps } from 'masar/react'
 import { Button } from '@/shared/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/ui/card'
 import { Input } from '@/shared/ui/input'
@@ -333,8 +333,8 @@ export default function ${n.Plural}Index({ ${n.plural}, search }: PageProps<type
 }
 
 function showPage(n: Names) {
-  return `import { db, type LoadContext } from '@masar/core'
-import { Link, router, useAction, useT, type PageProps } from '@masar/core/react'
+  return `import { db, type LoadContext } from 'masar'
+import { Link, router, useAction, useT, type PageProps } from 'masar/react'
 import { Button } from '@/shared/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card'
 import { delete${n.Single}, get${n.Single}, update${n.Single} } from '../../actions'
@@ -398,7 +398,7 @@ export default function ${n.Single}Show({ ${n.single} }: PageProps<typeof load>)
 
 function basicPage(n: Names) {
   return `import { useState } from 'react'
-import { useAction, type PageProps } from '@masar/core/react'
+import { useAction, type PageProps } from 'masar/react'
 import { Button } from '@/shared/ui/button'
 import { greet } from '../../actions'
 
@@ -428,7 +428,7 @@ export default function ${n.Plural}Index({ greeting }: PageProps<typeof load>) {
 }
 
 function seedsFile(n: Names) {
-  return `import { db, defineSeed } from '@masar/core'
+  return `import { db, defineSeed } from 'masar'
 import { ${n.plural} } from './schema'
 
 // masar db:seed fills this module with test data (masar db:seed --fresh empties the tables first).

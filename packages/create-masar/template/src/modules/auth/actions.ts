@@ -1,4 +1,4 @@
-import { action, auth, t, UnauthorizedError, z } from '@masar/core'
+import { action, auth, t, UnauthorizedError, z } from 'masar'
 
 const credentials = z.object({
   email: z.string().trim().email({ error: () => t('Enter a valid email') }),

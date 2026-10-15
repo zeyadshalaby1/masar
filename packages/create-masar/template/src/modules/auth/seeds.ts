@@ -1,4 +1,4 @@
-import { auth, db, defineSeed, env, users } from '@masar/core'
+import { auth, db, defineSeed, env, users } from 'masar'
 
 // masar db:seed: an admin to open /admin with (ADMIN_EMAIL / ADMIN_PASSWORD in .env), and a few users. Test data only.
 export default defineSeed(async ({ fake, log }) => {

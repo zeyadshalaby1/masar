@@ -31,7 +31,7 @@ export function viteConfig(root: string, { mode, hmrServer, noHmr }: Options): I
     },
     server: {
       middlewareMode: true,
-      // Masar shows its own overlay (@masar/core/dev-overlay) instead of Vite's.
+      // Masar shows its own overlay (masar/dev-overlay) instead of Vite's.
       hmr: noHmr ? false : hmrServer ? { server: hmrServer, overlay: false } : { overlay: false },
       watch: { ignored: ['**/database/**', '**/dist/**', '**/.masar/routes.gen.ts'] },
     },
@@ -42,7 +42,7 @@ export function viteConfig(root: string, { mode, hmrServer, noHmr }: Options): I
     ssr: {
       // Masar packages ship TypeScript, so Vite always compiles them. In builds,
       // everything is bundled except database drivers (installed in the app).
-      noExternal: mode === 'production' ? true : [/^@masar\//],
+      noExternal: mode === 'production' ? true : [/^masar(?:\/|$)/],
       external: mode === 'production' ? ['postgres', 'mongodb'] : undefined,
     },
     build: { emptyOutDir: true },

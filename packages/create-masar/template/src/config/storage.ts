@@ -1,4 +1,4 @@
-import { defineStorage, env } from '@masar/core'
+import { defineStorage, env } from 'masar'
 
 /**
  * Where uploads go. A file field picks a disk with f.file({ disk: 'videos' }); otherwise `default`.

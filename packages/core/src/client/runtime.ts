@@ -43,7 +43,7 @@ export function __masarAction(module: string, name: string) {
   return Object.assign(call, { __masar: 'action' as const, id: `${module}.${name}` })
 }
 
-/** The shape of a stored file (see StoredFile in @masar/core). */
+/** The shape of a stored file (see StoredFile in masar). */
 export interface UploadedFile {
   disk: string
   path: string

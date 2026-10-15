@@ -8,7 +8,7 @@
   <a href="https://masar.zeyad.io">Website</a> · <a href="https://masar.zeyad.io/docs">Docs</a> · <a href="https://github.com/zeyadshalaby1/masar">GitHub</a>
 </p>
 
-# @masar/core
+# masar
 
 The runtime of [Masar](https://masar.zeyad.io): modules, actions, server-rendered React pages, one data layer
 for SQLite, PostgreSQL and MongoDB, auth with email flows, a database-backed job queue and scheduler, mail,
@@ -17,7 +17,7 @@ uploads to local disks or S3, i18n with automatic right-to-left, and a generated
 Start with `npm create masar@latest` instead of installing this package by hand.
 
 ```ts
-import { action, db, f, model, z } from '@masar/core'
+import { action, db, f, model, z } from 'masar'
 
 export const courses = model('courses', { title: f.string(), price: f.number().default(0) })
 
@@ -30,8 +30,8 @@ export const createCourse = action({
 
 | Import | For |
 | --- | --- |
-| `@masar/core` | Server API: `defineModule`, `model`, `f`, `db`, `action`, `auth`, `defineJob`, `defineMail`, `t`... |
-| `@masar/core/react` | Pages: `Link`, `useAction`, `useForm`, `useT`, `PageProps`... |
+| `masar` | Server API: `defineModule`, `model`, `f`, `db`, `action`, `auth`, `defineJob`, `defineMail`, `t`... |
+| `masar/react` | Pages: `Link`, `useAction`, `useForm`, `useT`, `PageProps`... |
 
 Read the docs at [masar.zeyad.io/docs](https://masar.zeyad.io/docs).
 

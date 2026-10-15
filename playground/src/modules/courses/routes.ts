@@ -1,4 +1,4 @@
-import { defineRoutes } from '@masar/core'
+import { defineRoutes } from 'masar'
 import { listCourses } from './actions'
 
 /**

@@ -94,10 +94,10 @@ export function masar(root: string): Plugin {
       if (source === 'virtual:masar/icons') return ICONS
       // Skip Vite's dependency scanner: it reads files before this plugin rewrites them.
       if (this.environment.config.consumer !== 'client' || (options as { scan?: boolean } | undefined)?.scan) return
-      if (source === '@masar/core' || source === '@masar/core/server') {
+      if (source === 'masar' || source === 'masar/server') {
         this.error(
           `${importer ? rel(importer) : 'A browser file'} imports "${source}", which is server code.\n` +
-            `  → In pages and components import from "@masar/core/react". Use "import type" for types.`,
+            `  → In pages and components import from "masar/react". Use "import type" for types.`,
         )
       }
     },
@@ -112,7 +112,7 @@ export function masar(root: string): Plugin {
         const body = names
           .map((n) => `export const ${n} = /* @__PURE__ */ __masarAction(${JSON.stringify(action[1])}, ${JSON.stringify(n)})`)
           .join('\n')
-        return { code: `import { __masarAction } from '@masar/core/runtime'\n${body}\n`, map: null }
+        return { code: `import { __masarAction } from 'masar/runtime'\n${body}\n`, map: null }
       }
 
       if (PAGE.test(file)) {
@@ -124,7 +124,7 @@ export function masar(root: string): Plugin {
         this.error(
           `${rel(file)} is server-only and cannot be imported by browser code.\n` +
             `  → Pages reach the server through actions (import { myAction } from '../../actions') or load().\n` +
-            `  → For types from schema.ts use: import type { RowOf } from '@masar/core'`,
+            `  → For types from schema.ts use: import type { RowOf } from 'masar'`,
         )
       }
     },

@@ -48,7 +48,7 @@ export async function makeMigration(module: string, name: string) {
   const file = join(dir, `${stamp(new Date())}_${slug}.ts`)
   writeFileSync(
     file,
-    `import { defineMigration } from '@masar/core'
+    `import { defineMigration } from 'masar'
 
 // Runs once per database with masar migrate (and masar dev), before schema sync.
 // Change schema.ts to match: sync adds new tables and fields, migrations rename, drop and move data.

@@ -1,4 +1,4 @@
-import { action, db, t, uploaded, z } from '@masar/core'
+import { action, db, t, uploaded, z } from 'masar'
 import { courses } from './schema'
 
 const courseInput = z.object({

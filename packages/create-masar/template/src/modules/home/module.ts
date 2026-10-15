@@ -1,4 +1,4 @@
-import { defineModule } from '@masar/core'
+import { defineModule } from 'masar'
 
 export default defineModule({
   name: 'home',

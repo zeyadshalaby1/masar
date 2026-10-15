@@ -5,9 +5,9 @@
 First public npm release of Masar: one clear path from idea to production.
 
 - `create-masar`: browser setup in English and Arabic, with terminal and unattended modes.
-- `@masar/core`: feature modules, validated actions, server-rendered React pages, authentication,
+- `masar`: feature modules, validated actions, server-rendered React pages, authentication,
   a shared data API, database-backed jobs, scheduling, mail, uploads, admin and localization.
-- `@masar/cli`: development server, production builds, generators and database commands.
+- `masar-cli`: development server, production builds, generators and database commands.
 - Package READMEs, license files and repository metadata included in each npm archive.
 - Repeatable archive creation and an isolated installer/build/production smoke check.
 - Same-origin login redirect normalization included in both the starter and playground.

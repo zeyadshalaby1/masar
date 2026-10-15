@@ -1,1 +1,1 @@
-export { ResourceIndexPage as default } from '@masar/core/admin'
+export { ResourceIndexPage as default } from 'masar/admin'

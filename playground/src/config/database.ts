@@ -1,4 +1,4 @@
-import { defineDatabase, env } from '@masar/core'
+import { defineDatabase, env } from 'masar'
 
 /**
  * Database connections. Modules use `default` unless they set `store` in

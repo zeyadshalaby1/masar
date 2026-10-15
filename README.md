@@ -21,7 +21,7 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@masar/core"><img alt="npm version" src="https://img.shields.io/npm/v/%40masar%2Fcore?color=FF5A1F&labelColor=100C0A"></a>
+  <a href="https://www.npmjs.com/package/masar"><img alt="npm version" src="https://img.shields.io/npm/v/masar?color=FF5A1F&labelColor=100C0A"></a>
   <a href="https://www.npmjs.com/package/create-masar"><img alt="Create Masar" src="https://img.shields.io/badge/npm%20create-masar-FF5A1F?labelColor=100C0A"></a>
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-strict-100C0A?labelColor=FF5A1F">
   <img alt="Node" src="https://img.shields.io/badge/Node-22.13%2B-100C0A?labelColor=FF5A1F">
@@ -234,8 +234,8 @@ Masar creates `.masar/` for generated entries, `database/` for the default SQLit
 | Package | Purpose |
 | --- | --- |
 | [`create-masar`](https://www.npmjs.com/package/create-masar) | The installer behind `npm create masar@latest`. |
-| [`@masar/core`](https://www.npmjs.com/package/@masar/core) | Runtime, server and React APIs. |
-| [`@masar/cli`](https://www.npmjs.com/package/@masar/cli) | The `masar` development, build, database and generator commands. |
+| [`masar`](https://www.npmjs.com/package/masar) | Runtime, server and React APIs. |
+| [`masar-cli`](https://www.npmjs.com/package/masar-cli) | The `masar` development, build, database and generator commands. |
 
 The installer adds compatible versions for you. Framework maintainers can follow
 [RELEASING.md](RELEASING.md) to validate and publish an update.
@@ -291,8 +291,8 @@ npx autocannon -c 50 -d 10 http://localhost:3100/
 
 | Path | What it is |
 | --- | --- |
-| [`packages/core`](packages/core) | `@masar/core`: kernel, modules, actions, pages, data layer, auth, jobs, mail, storage, admin, i18n |
-| [`packages/cli`](packages/cli) | `@masar/cli`: the `masar` command and the Vite setup |
+| [`packages/core`](packages/core) | `masar`: kernel, modules, actions, pages, data layer, auth, jobs, mail, storage, admin, i18n |
+| [`packages/cli`](packages/cli) | `masar-cli`: the `masar` command and the Vite setup |
 | [`packages/create-masar`](packages/create-masar) | `npm create masar`: the browser installer and the starter app |
 | [`playground`](playground) | A Masar app used to develop and test the framework |
 | [`brand`](brand) | Logo, palette and brand sheet |

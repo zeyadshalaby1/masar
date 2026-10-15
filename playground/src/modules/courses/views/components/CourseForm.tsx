@@ -1,4 +1,4 @@
-import { useT } from '@masar/core/react'
+import { useT } from 'masar/react'
 import type { FormEvent } from 'react'
 import { Button } from '@/shared/ui/button'
 import { Input } from '@/shared/ui/input'

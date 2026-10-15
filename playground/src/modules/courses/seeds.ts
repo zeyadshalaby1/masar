@@ -1,4 +1,4 @@
-import { db, defineSeed } from '@masar/core'
+import { db, defineSeed } from 'masar'
 import { courses } from './schema'
 
 export default defineSeed(async ({ fake }) => {

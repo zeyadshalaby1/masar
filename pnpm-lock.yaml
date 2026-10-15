@@ -45,12 +45,12 @@ importers:
         specifier: ^8.3.4
         version: 8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)
     devDependencies:
-      '@masar/core':
-        specifier: workspace:*
-        version: link:../core
       '@types/node':
         specifier: ^24
         version: 24.19.2
+      masar:
+        specifier: workspace:*
+        version: link:../core
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -115,9 +115,6 @@ importers:
       '@inertiajs/react':
         specifier: ^3.9.1
         version: 3.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@masar/core':
-        specifier: workspace:*
-        version: link:../packages/core
       '@radix-ui/react-label':
         specifier: ^2.1.17
         version: 2.1.17(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -133,6 +130,9 @@ importers:
       lucide-react:
         specifier: ^1.57.0
         version: 1.57.0(@types/react@19.3.0)(react@19.3.1)
+      masar:
+        specifier: workspace:*
+        version: link:../packages/core
       react:
         specifier: ^19.2.0
         version: 19.3.1
@@ -149,9 +149,6 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0
     devDependencies:
-      '@masar/cli':
-        specifier: workspace:*
-        version: link:../packages/cli
       '@types/node':
         specifier: ^24.0.0
         version: 24.19.2
@@ -161,6 +158,9 @@ importers:
       '@types/react-dom':
         specifier: ^19.2.0
         version: 19.3.0(@types/react@19.3.0)
+      masar-cli:
+        specifier: workspace:*
+        version: link:../packages/cli
       typescript:
         specifier: ^5.9.3
         version: 5.9.3

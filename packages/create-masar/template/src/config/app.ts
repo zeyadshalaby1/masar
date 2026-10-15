@@ -1,4 +1,4 @@
-import { defineApp, env } from '@masar/core'
+import { defineApp, env } from 'masar'
 
 export default defineApp({
   name: env('APP_NAME', 'Masar App'),

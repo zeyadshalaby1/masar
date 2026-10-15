@@ -1,4 +1,4 @@
-import { Link, useMasar, useT } from '@masar/core/react'
+import { Link, useMasar, useT } from 'masar/react'
 
 const getSteps = (t: ReturnType<typeof useT>) => [
   {

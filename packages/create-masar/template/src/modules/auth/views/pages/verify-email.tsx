@@ -1,5 +1,5 @@
-import type { LoadContext } from '@masar/core'
-import { Link, useT, type PageProps } from '@masar/core/react'
+import type { LoadContext } from 'masar'
+import { Link, useT, type PageProps } from 'masar/react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/ui/card'
 import { verifyEmail } from '../../actions'
 

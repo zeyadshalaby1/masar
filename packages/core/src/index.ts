@@ -1,6 +1,6 @@
 /**
- * @masar/core — server-side API used in module.ts, schema.ts, actions.ts,
- * routes.ts, jobs and config. Pages import from '@masar/core/react'.
+ * masar — server-side API used in module.ts, schema.ts, actions.ts,
+ * routes.ts, jobs and config. Pages import from 'masar/react'.
  */
 export { auth, role, sessions, verified, UnauthorizedError, users, type Authorize, type AuthorizeRule, type User } from './auth'
 export { action, type Action, type ActionArgs, type ActionDefinition } from './actions/action'

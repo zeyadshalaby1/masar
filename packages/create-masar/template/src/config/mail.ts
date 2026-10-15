@@ -1,4 +1,4 @@
-import { defineMailer, env, type Transport } from '@masar/core'
+import { defineMailer, env, type Transport } from 'masar'
 
 /**
  * Outgoing mail. Without a provider in .env, mails are printed in the terminal and listed at

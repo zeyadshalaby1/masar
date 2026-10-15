@@ -1,4 +1,4 @@
-import type { MasarServer } from '@masar/core/server'
+import type { MasarServer } from 'masar/server'
 import pc from 'picocolors'
 import { orange } from './ui'
 

@@ -1,4 +1,4 @@
-import { db, defineDashboard, users, widgets } from '@masar/core'
+import { db, defineDashboard, users, widgets } from 'masar'
 
 const DAY = 86_400_000
 

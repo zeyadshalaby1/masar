@@ -18,15 +18,15 @@ run(process.execPath, [join(work, 'node_modules/create-masar/index.js'), 'app', 
 const app = join(work, 'app')
 const manifest = join(app, 'package.json')
 const pkg = JSON.parse(readFileSync(manifest))
-assert.equal(pkg.dependencies['@masar/core'], `^${version}`)
-assert.equal(pkg.devDependencies['@masar/cli'], `^${version}`)
-pkg.dependencies['@masar/core'] = `file:${archive('masar-core')}`
-pkg.devDependencies['@masar/cli'] = `file:${archive('masar-cli')}`
+assert.equal(pkg.dependencies['masar'], `^${version}`)
+assert.equal(pkg.devDependencies['masar-cli'], `^${version}`)
+pkg.dependencies['masar'] = `file:${archive('masar')}`
+pkg.devDependencies['masar-cli'] = `file:${archive('masar-cli')}`
 writeFileSync(manifest, JSON.stringify(pkg, null, 2))
 run('npm', ['install', '--no-audit', '--no-fund'], app)
 run('npm', ['run', 'typecheck'], app)
 run('npm', ['run', 'build'], app)
-const child = spawn(process.execPath, ['node_modules/@masar/cli/bin/masar.js', 'start', '--port', '3197', '--no-worker'], {
+const child = spawn(process.execPath, ['node_modules/masar-cli/bin/masar.js', 'start', '--port', '3197', '--no-worker'], {
   cwd: app, env: { ...process.env, NODE_ENV: 'production' }, stdio: ['ignore', 'pipe', 'pipe'],
 })
 let logs = ''

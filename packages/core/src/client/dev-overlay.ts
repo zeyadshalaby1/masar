@@ -21,7 +21,7 @@ const MARK = `<svg viewBox="0 0 64 64" width="28" height="28" aria-hidden="true"
 
 /** Known problems → the next step. The first match wins. */
 const HINTS: [RegExp, (m: RegExpMatchArray) => string][] = [
-  [/Failed to resolve import "virtual:masar\/[^"]+"/, () => 'The Masar Vite plugin is not active in this server. Restart masar dev (changes to @masar/cli need a restart).'],
+  [/Failed to resolve import "virtual:masar\/[^"]+"/, () => 'The Masar Vite plugin is not active in this server. Restart masar dev (changes to masar-cli need a restart).'],
   [/Failed to resolve import "(\.{1,2}\/[^"]+)"/, (m) => `No file at ${m[1]}. Check the path and the file name; case matters.`],
   [/Failed to resolve import "((?:@[^/"]+\/)?[^/"]+)[^"]*"/, (m) => `The package "${m[1]}" is not installed. Run: pnpm add ${m[1]}`],
   [/does not provide an export named '([^']+)'/, (m) => `Nothing is exported as "${m[1]}" there. Check the name, or use the default import.`],

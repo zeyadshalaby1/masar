@@ -69,7 +69,7 @@ export function createRootView(
     // In dev the error overlay loads on its own, so it still shows when the app's code fails to load.
     const head = prod
       ? prod.tags
-      : `<script type="module">import '@masar/core/dev-overlay'</script>\n    <script type="module" src="/${CLIENT_ENTRY}"></script>`
+      : `<script type="module">import 'masar/dev-overlay'</script>\n    <script type="module" src="/${CLIENT_ENTRY}"></script>`
     const locale = localeOf(c)
     const theme = themeOf(c)
     const inertiaPage = page as unknown as { component: string; props: Record<string, unknown>; url: string }

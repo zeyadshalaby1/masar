@@ -1,4 +1,4 @@
-import { f, model } from '@masar/core'
+import { f, model } from 'masar'
 
 export const banners = model('banners', {
   title: f.string(),

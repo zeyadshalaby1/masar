@@ -1,4 +1,4 @@
-import { defineResource } from '@masar/core'
+import { defineResource } from 'masar'
 import { courses } from '../../courses/schema'
 
 export default defineResource(courses, {

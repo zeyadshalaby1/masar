@@ -1,4 +1,4 @@
-import { defineMailer, env } from '@masar/core'
+import { defineMailer, env } from 'masar'
 
 /**
  * Outgoing mail. Without SMTP settings mails are printed in the terminal and listed at

@@ -1,4 +1,4 @@
-import { f, model } from '@masar/core'
+import { f, model } from 'masar'
 
 /**
  * Every model gets id, createdAt and updatedAt automatically.
