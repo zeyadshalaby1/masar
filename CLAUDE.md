@@ -83,13 +83,13 @@ scripts/e2e-api.mjs      uploads + admin over HTTP (pnpm e2e runs both)
 - **Admin** (`src/admin/`): kernel builds it when `src/modules/admin` exists (module authorize defaults to
   role('admin')). Server: `server.ts` turns models (+ `resources/*.ts`, `dashboard.ts` globbed in the
   server entry) into metadata shared as `masar.admin` on admin pages, and answers `POST /_masar/admin/:op`
-  (list, record, options, save, delete, run, export, dashboard). UI: `masar/admin` (React, Tailwind
+  (list, record, options, save, delete, run, export, dashboard). UI: `@zeyadshalaby1/masar/admin` (React, Tailwind
   classes with the app's tokens; the app CSS has `@source` pointing at core/src/admin). Module layouts:
   `views/layout.tsx` replaces AppLayout for that module. Icons: the Vite plugin serves
   `virtual:masar/icons` with only the Lucide names found in src (`icon: '...'`, `<Icon name>`) plus the
   admin's own list in `cli/src/icons.ts` — add new built-in icon names there. Never use lucide's DynamicIcon:
   it makes Vite fetch all 1500 icons.
-- **Errors in dev**: `masar/dev-overlay` replaces Vite's overlay (`hmr.overlay: false` in cli/src/vite.ts).
+- **Errors in dev**: `@zeyadshalaby1/masar/dev-overlay` replaces Vite's overlay (`hmr.overlay: false` in cli/src/vite.ts).
   It loads from its own inline script in the root view (so it works when the app graph fails), shows
   build errors (`vite:error`), uncaught errors and rejections in the brand, with a "Next step" from Masar
   `→` lines or the HINTS table in dev-overlay.ts — add a row there for any confusing error you meet.
@@ -142,7 +142,7 @@ node packages/create-masar/index.js ../some-app --local --db sqlite   # new app 
    (the `::jsonb` cast in placeholders is what tells it the type). SQLite does need stringify.
 4. **Database drivers are loaded with `importDriver()`** (variable specifier): apps that don't use
    Postgres/Mongo must not need their packages or types. Keep driver types as local interfaces.
-5. **Packages ship TypeScript source.** Vite compiles them (`ssr.noExternal: /^masar(?:\/|$)/`), the CLI runs
+5. **Packages ship TypeScript source.** Vite compiles them (`ssr.noExternal: /^@zeyadshalaby1\/masar(?:\/|$)/`), the CLI runs
    through tsx. Production SSR build bundles everything except `postgres` and `mongodb`.
 6. **React must stay single-instance**: `resolve.dedupe` covers react, react-dom, @inertiajs/react,
    so apps must list those three as their own dependencies.
@@ -180,4 +180,4 @@ single-node replica set); test the rest before relying on it.
 Next, in order (agreed with Ziad):
 1. Build a real feature (part of EduZac) on Masar to find real gaps
 2. Mail, Redis-backed jobs + scheduler, SSR for SEO, generated admin pages
-3. Automated test suite for the packages, maintain the `masar`, `masar-cli` and `create-masar` npm releases
+3. Automated test suite for the packages, maintain the `masar`, `@zeyadshalaby1/masar-cli` and `create-masar` npm releases

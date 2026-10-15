@@ -1,4 +1,4 @@
-import { defineDatabase, env } from 'masar'
+import { defineDatabase, env } from '@zeyadshalaby1/masar'
 
 /**
  * Database connections. Modules use `default` unless they set `store` in

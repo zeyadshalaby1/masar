@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 /* The admin UI ships with masar and is styled with this theme. */
-@source "../../../node_modules/masar/src/admin";
+@source "../../../node_modules/@zeyadshalaby1/masar/src/admin";
 
 @custom-variant dark (&:is(.dark *));
 

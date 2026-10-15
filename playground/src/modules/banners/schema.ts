@@ -1,4 +1,4 @@
-import { f, model } from 'masar'
+import { f, model } from '@zeyadshalaby1/masar'
 
 export const banners = model('banners', {
   title: f.string(),

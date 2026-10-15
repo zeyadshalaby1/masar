@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
-import type { MasarServer } from 'masar/server'
+import type { MasarServer } from '@zeyadshalaby1/masar/server'
 import pc from 'picocolors'
 import { loadApp } from '../load'
 import { findRoot, loadEnv } from '../project'

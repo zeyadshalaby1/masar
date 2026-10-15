@@ -1,5 +1,5 @@
-import { db, type LoadContext } from 'masar'
-import { Link, router, useAction, useT, type PageProps } from 'masar/react'
+import { db, type LoadContext } from '@zeyadshalaby1/masar'
+import { Link, router, useAction, useT, type PageProps } from '@zeyadshalaby1/masar/react'
 import { Button } from '@/shared/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card'
 import { deleteCourse, getCourse, updateCourse } from '../../actions'

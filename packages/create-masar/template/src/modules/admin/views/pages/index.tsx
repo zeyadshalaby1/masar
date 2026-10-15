@@ -1,1 +1,1 @@
-export { DashboardPage as default } from 'masar/admin'
+export { DashboardPage as default } from '@zeyadshalaby1/masar/admin'

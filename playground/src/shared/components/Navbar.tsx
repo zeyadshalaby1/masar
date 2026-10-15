@@ -1,4 +1,4 @@
-import { Link, router, useMasar, usePage, useT } from 'masar/react'
+import { Link, router, useMasar, usePage, useT } from '@zeyadshalaby1/masar/react'
 import type { ReactNode } from 'react'
 import { logout } from '@/modules/auth/actions'
 import { cn } from '@/shared/lib/utils'

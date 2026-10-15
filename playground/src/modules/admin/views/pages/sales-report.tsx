@@ -1,5 +1,5 @@
-import { AdminPage, Card, Chart, StatCard, useAdminT } from 'masar/admin'
-import type { AdminPageMeta } from 'masar/admin'
+import { AdminPage, Card, Chart, StatCard, useAdminT } from '@zeyadshalaby1/masar/admin'
+import type { AdminPageMeta } from '@zeyadshalaby1/masar/admin'
 
 // Shown in the admin sidebar. Icons: any Lucide name in kebab-case (https://lucide.dev/icons).
 export const admin: AdminPageMeta = { title: 'Sales report', icon: 'chart-bar', group: 'Reports' }

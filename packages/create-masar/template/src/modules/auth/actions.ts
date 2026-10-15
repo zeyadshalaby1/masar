@@ -1,4 +1,4 @@
-import { action, auth, t, UnauthorizedError, z } from 'masar'
+import { action, auth, t, UnauthorizedError, z } from '@zeyadshalaby1/masar'
 
 const credentials = z.object({
   email: z.string().trim().email({ error: () => t('Enter a valid email') }),

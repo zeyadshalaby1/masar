@@ -1,1 +1,1 @@
-export { ResourceIndexPage as default } from 'masar/admin'
+export { ResourceIndexPage as default } from '@zeyadshalaby1/masar/admin'

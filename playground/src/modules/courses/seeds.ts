@@ -1,4 +1,4 @@
-import { db, defineSeed } from 'masar'
+import { db, defineSeed } from '@zeyadshalaby1/masar'
 import { courses } from './schema'
 
 export default defineSeed(async ({ fake }) => {

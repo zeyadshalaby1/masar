@@ -1,4 +1,4 @@
-import { defineResource, users } from 'masar'
+import { defineResource, users } from '@zeyadshalaby1/masar'
 
 export default defineResource(users, {
   icon: 'users',

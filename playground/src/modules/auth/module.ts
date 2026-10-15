@@ -1,4 +1,4 @@
-import { defineModule } from 'masar'
+import { defineModule } from '@zeyadshalaby1/masar'
 
 // Sign in, sign up and sign out. The api flag gives mobile apps POST /api/auth/token.
 export default defineModule({

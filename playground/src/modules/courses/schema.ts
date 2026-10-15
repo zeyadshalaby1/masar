@@ -1,4 +1,4 @@
-import { f, model } from 'masar'
+import { f, model } from '@zeyadshalaby1/masar'
 
 /**
  * Every model gets id, createdAt and updatedAt automatically.

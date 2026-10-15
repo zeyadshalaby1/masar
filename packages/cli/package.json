@@ -1,5 +1,5 @@
 {
-  "name": "masar-cli",
+  "name": "@zeyadshalaby1/masar-cli",
   "version": "0.1.0",
   "description": "The masar command: dev server, production build, generators, migrations, seeds and workers.",
   "keywords": [
@@ -54,10 +54,10 @@
     "vite": "^8.3.4"
   },
   "peerDependencies": {
-    "masar": "0.1.0"
+    "@zeyadshalaby1/masar": "0.1.0"
   },
   "devDependencies": {
-    "masar": "workspace:*",
+    "@zeyadshalaby1/masar": "workspace:*",
     "@types/node": "^24",
     "typescript": "^5.9.3"
   },

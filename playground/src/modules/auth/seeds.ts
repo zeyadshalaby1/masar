@@ -1,4 +1,4 @@
-import { auth, db, defineSeed, users } from 'masar'
+import { auth, db, defineSeed, users } from '@zeyadshalaby1/masar'
 
 // masar db:seed: an admin to open /admin with, and a few users. Test data only.
 export default defineSeed(async ({ fake, log }) => {

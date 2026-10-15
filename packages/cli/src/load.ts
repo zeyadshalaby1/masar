@@ -1,4 +1,4 @@
-import type { MasarServer } from 'masar/server'
+import type { MasarServer } from '@zeyadshalaby1/masar/server'
 import { createServer, isRunnableDevEnvironment, type ViteDevServer } from 'vite'
 import { loadEnv, SERVER_ENTRY, writeEntries } from './project'
 import { viteConfig } from './vite'

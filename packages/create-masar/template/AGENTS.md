@@ -60,7 +60,7 @@ Built-in modules in a new app: `home` (/), `auth` (login, register, verify email
 
 ```ts
 // src/modules/courses/module.ts
-import { defineModule } from 'masar'
+import { defineModule } from '@zeyadshalaby1/masar'
 
 export default defineModule({
   name: 'courses',            // must equal the folder name
@@ -81,7 +81,7 @@ The generated code runs and typechecks as is; start from it.
 
 ```ts
 // schema.ts
-import { f, model } from 'masar'
+import { f, model } from '@zeyadshalaby1/masar'
 
 export const courses = model('courses', {
   title: f.string(),
@@ -99,10 +99,10 @@ export const courses = model('courses', {
 ```
 
 Every model also has `id` (UUIDv7 string), `createdAt`, `updatedAt` (ISO strings). Dates are ISO strings.
-Check the field builder in `node_modules/masar/src/db/model.ts` for the exact list (`.index()`, etc.).
+Check the field builder in `node_modules/@zeyadshalaby1/masar/src/db/model.ts` for the exact list (`.index()`, etc.).
 
 ```ts
-import { db, transaction } from 'masar'
+import { db, transaction } from '@zeyadshalaby1/masar'
 
 await db(courses).create({ title, slug, level: 'beginner', teacherId })
 await db(courses).createMany([...])
@@ -137,7 +137,7 @@ cross-store joins or transactions. The same API works on SQLite, Postgres and Mo
 
 ```ts
 // actions.ts
-import { action, auth, db, role, t, z } from 'masar'
+import { action, auth, db, role, t, z } from '@zeyadshalaby1/masar'
 import { courses } from './schema'
 
 export const createCourse = action({
@@ -158,8 +158,8 @@ export const createCourse = action({
 
 ```tsx
 // views/pages/[id].tsx → /courses/:id
-import { db, type LoadContext } from 'masar'
-import { Link, router, useAction, useT, type PageProps } from 'masar/react'
+import { db, type LoadContext } from '@zeyadshalaby1/masar'
+import { Link, router, useAction, useT, type PageProps } from '@zeyadshalaby1/masar/react'
 import { getCourse, updateCourse } from '../../actions'
 import { courses } from '../../schema'
 
@@ -187,7 +187,7 @@ export default function CourseShow({ course }: PageProps<typeof load>) {
   removed from the client bundle. Do not touch `window`/`document`/`localStorage` during render:
   pages are server-rendered (SSR) for search engines. Use `useEffect`, or `export const ssr = false`.
 - Pages of modules with `authorize` are not server-rendered and not in the sitemap.
-- From `masar/react`: `Link`, `router`, `useForm`, `useAction`, `useT`, `useLocale`, `useTheme`,
+- From `@zeyadshalaby1/masar/react`: `Link`, `router`, `useForm`, `useAction`, `useT`, `useLocale`, `useTheme`,
   `useMasar()` (app name, nav, signed-in `user`), `uploadFile`, `PageProps`, `Head`, `Deferred`.
 - UI: shadcn components in `src/shared/ui` (`npx shadcn@latest add dialog`). Icons: `lucide-react`.
   Brand colors come from CSS tokens; use Tailwind classes like `bg-primary`, `text-muted-foreground`.
@@ -307,7 +307,7 @@ export default defineMigration({ async up(m) { await m.renameField('courses', 't
 
 ## Gotchas
 
-- Changes inside `node_modules/masar/` or `node_modules/masar-cli/` need a dev-server restart.
+- Changes inside `node_modules/@zeyadshalaby1/masar/` or `node_modules/@zeyadshalaby1/masar-cli/` need a dev-server restart.
 - Do not add `verbatimModuleSyntax` to tsconfig: it keeps server imports in the browser bundle.
 - `react`, `react-dom` and `@inertiajs/react` must stay direct dependencies of the app.
 - `t(variable)` is not found by the scanner: write literals.

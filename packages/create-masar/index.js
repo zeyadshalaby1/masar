@@ -138,7 +138,7 @@ const storageFile = (s3) => {
       secret: env('S3_SECRET'),
       url: env('S3_URL', ''), // public bucket or CDN domain; leave empty for private files
     },`
-  return `import { defineStorage, env } from 'masar'
+  return `import { defineStorage, env } from '@zeyadshalaby1/masar'
 
 /**
  * Where uploads go. A file field picks a disk with f.file({ disk: 'private' }); otherwise \`default\`.
@@ -169,7 +169,7 @@ function writeApp(a) {
   const masarVersion = (pkg) => (local ? `${a.pm === 'pnpm' ? 'link' : 'file'}:${join(monorepo, pkg)}` : `^${VERSION}`)
   const dependencies = {
     '@inertiajs/react': '^3.9.1',
-    'masar': masarVersion('core'),
+    '@zeyadshalaby1/masar': masarVersion('core'),
     '@radix-ui/react-label': '^2.1.17',
     '@radix-ui/react-slot': '^1.5.0',
     'class-variance-authority': '^0.7.1',
@@ -199,7 +199,7 @@ function writeApp(a) {
     },
     dependencies: Object.fromEntries(Object.entries(dependencies).sort()),
     devDependencies: {
-      'masar-cli': masarVersion('cli'),
+      '@zeyadshalaby1/masar-cli': masarVersion('cli'),
       '@types/node': '^24.0.0',
       '@types/react': '^19.2.0',
       '@types/react-dom': '^19.2.0',
@@ -227,7 +227,7 @@ function writeApp(a) {
 
   writeFileSync(
     join(target, 'src/config/database.ts'),
-    `import { defineDatabase, env } from 'masar'
+    `import { defineDatabase, env } from '@zeyadshalaby1/masar'
 
 /**
  * Database connections. Modules use \`default\` unless they set \`store\` in

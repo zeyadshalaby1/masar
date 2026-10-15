@@ -1,4 +1,4 @@
-import { defineRoutes } from 'masar'
+import { defineRoutes } from '@zeyadshalaby1/masar'
 import { listCourses } from './actions'
 
 /**

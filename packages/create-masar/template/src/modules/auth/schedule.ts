@@ -1,4 +1,4 @@
-import { db, defineSchedule, sessions } from 'masar'
+import { db, defineSchedule, sessions } from '@zeyadshalaby1/masar'
 
 // Recurring work runs in the web process and in `masar worker`, once per slot even with several servers.
 export default defineSchedule((s) => {

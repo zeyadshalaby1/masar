@@ -4,8 +4,8 @@ The public release consists of three packages, all at the same version:
 
 | Package | Archive | Publish order |
 | --- | --- | --- |
-| `masar` | `masar-<version>.tgz` | 1 |
-| `masar-cli` | `masar-cli-<version>.tgz` | 2 |
+| `@zeyadshalaby1/masar` | `zeyadshalaby1-masar-<version>.tgz` | 1 |
+| `@zeyadshalaby1/masar-cli` | `zeyadshalaby1-masar-cli-<version>.tgz` | 2 |
 | `create-masar` | `create-masar-<version>.tgz` | 3 |
 
 Publish the installer last so newly generated apps can resolve both framework packages.
@@ -15,7 +15,7 @@ The repository root and playground are private and must never be published.
 
 Use Node.js 22.13+ and the pinned pnpm 10.28.0 version.
 
-1. Update the version in each package manifest, the CLI's `masar` peer dependency and
+1. Update the version in each package manifest, the CLI's `@zeyadshalaby1/masar` peer dependency and
    `VERSION` in `packages/create-masar/index.js`. Update CLI display versions when changing releases.
 2. Keep each package's README and LICENSE in sync with the release. The installer also ships
    `TEMPLATE_LICENSE.md`, explaining the separate grant for generated application files.
@@ -37,8 +37,8 @@ SSR and Arabic RTL. It needs registry access and port 3197. It leaves the tempor
 Inspect each archive before publishing:
 
 ```bash
-npm publish ./artifacts/masar-0.1.0.tgz --dry-run --access public
-npm publish ./artifacts/masar-cli-0.1.0.tgz --dry-run --access public
+npm publish ./artifacts/zeyadshalaby1-masar-0.1.0.tgz --dry-run --access public
+npm publish ./artifacts/zeyadshalaby1-masar-cli-0.1.0.tgz --dry-run --access public
 npm publish ./artifacts/create-masar-0.1.0.tgz --dry-run --access public
 ```
 
@@ -47,14 +47,14 @@ Archives must contain their README, LICENSE and runtime files, without `.env`, d
 
 ## Publish the checked archives
 
-The publisher needs publishing rights for `masar`, `masar-cli` and `create-masar`.
+The publisher needs publishing rights for `@zeyadshalaby1/masar`, `@zeyadshalaby1/masar-cli` and `create-masar`.
 Use the official browser login; do not commit tokens or put them in release scripts.
 
 ```bash
 npm login
 npm whoami
-npm publish ./artifacts/masar-0.1.0.tgz --access public --tag latest
-npm publish ./artifacts/masar-cli-0.1.0.tgz --access public --tag latest
+npm publish ./artifacts/zeyadshalaby1-masar-0.1.0.tgz --access public --tag latest
+npm publish ./artifacts/zeyadshalaby1-masar-cli-0.1.0.tgz --access public --tag latest
 npm publish ./artifacts/create-masar-0.1.0.tgz --access public --tag latest
 ```
 
@@ -64,8 +64,8 @@ archive names for subsequent releases. A published name/version cannot be reused
 ## Verify and announce
 
 ```bash
-npm view masar version
-npm view masar-cli version
+npm view @zeyadshalaby1/masar version
+npm view @zeyadshalaby1/masar-cli version
 npm view create-masar version
 npm create masar@latest my-app -- --yes
 cd my-app

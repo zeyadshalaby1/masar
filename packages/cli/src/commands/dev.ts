@@ -1,7 +1,7 @@
 import { createServer as createHttpServer } from 'node:http'
 import { relative } from 'node:path'
 import { getRequestListener } from '@hono/node-server'
-import type { MasarServer } from 'masar/server'
+import type { MasarServer } from '@zeyadshalaby1/masar/server'
 import pc from 'picocolors'
 import { createServer, isRunnableDevEnvironment } from 'vite'
 import { findRoot, loadEnv, SERVER_ENTRY, writeEntries, writeRoutes } from '../project'

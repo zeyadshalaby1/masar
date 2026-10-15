@@ -1,4 +1,4 @@
-import { defineStorage, env } from 'masar'
+import { defineStorage, env } from '@zeyadshalaby1/masar'
 
 /**
  * Where uploads go. A file field picks a disk with f.file({ disk: 'videos' }); otherwise `default`.

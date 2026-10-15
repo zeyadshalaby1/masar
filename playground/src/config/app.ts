@@ -1,4 +1,4 @@
-import { defineApp, env } from 'masar'
+import { defineApp, env } from '@zeyadshalaby1/masar'
 
 export default defineApp({
   name: env('APP_NAME', 'Masar App'),

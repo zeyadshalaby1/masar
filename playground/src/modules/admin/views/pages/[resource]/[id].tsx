@@ -1,1 +1,1 @@
-export { ResourceRecordPage as default } from 'masar/admin'
+export { ResourceRecordPage as default } from '@zeyadshalaby1/masar/admin'

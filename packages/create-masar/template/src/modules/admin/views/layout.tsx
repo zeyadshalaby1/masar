@@ -1,1 +1,1 @@
-export { AdminLayout as default } from 'masar/admin'
+export { AdminLayout as default } from '@zeyadshalaby1/masar/admin'

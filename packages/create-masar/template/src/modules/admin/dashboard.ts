@@ -1,4 +1,4 @@
-import { db, defineDashboard, users, widgets } from 'masar'
+import { db, defineDashboard, users, widgets } from '@zeyadshalaby1/masar'
 
 const DAY = 86_400_000
 

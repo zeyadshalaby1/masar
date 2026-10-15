@@ -1,4 +1,4 @@
-import { defineMailer, env } from 'masar'
+import { defineMailer, env } from '@zeyadshalaby1/masar'
 
 /**
  * Outgoing mail. Without SMTP settings mails are printed in the terminal and listed at

@@ -42,7 +42,7 @@ export function viteConfig(root: string, { mode, hmrServer, noHmr }: Options): I
     ssr: {
       // Masar packages ship TypeScript, so Vite always compiles them. In builds,
       // everything is bundled except database drivers (installed in the app).
-      noExternal: mode === 'production' ? true : [/^masar(?:\/|$)/],
+      noExternal: mode === 'production' ? true : [/^@zeyadshalaby1\/masar(?:\/|$)/],
       external: mode === 'production' ? ['postgres', 'mongodb'] : undefined,
     },
     build: { emptyOutDir: true },

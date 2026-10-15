@@ -1,5 +1,5 @@
 {
-  "name": "masar",
+  "name": "@zeyadshalaby1/masar",
   "version": "0.1.0",
   "description": "The Masar runtime: modules, actions, pages with SSR, one data layer for SQLite, Postgres and MongoDB, auth, jobs, mail, storage and the admin panel.",
   "keywords": [

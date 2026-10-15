@@ -8,7 +8,7 @@
   <a href="https://masar.zeyad.io">Website</a> · <a href="https://masar.zeyad.io/docs">Docs</a> · <a href="https://github.com/zeyadshalaby1/masar">GitHub</a>
 </p>
 
-# masar-cli
+# @zeyadshalaby1/masar-cli
 
 The `masar` command for [Masar](https://masar.zeyad.io) apps. Installed for you by `npm create masar@latest`.
 

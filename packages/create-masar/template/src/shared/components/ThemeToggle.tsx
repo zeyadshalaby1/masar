@@ -1,4 +1,4 @@
-import { useT, useTheme } from 'masar/react'
+import { useT, useTheme } from '@zeyadshalaby1/masar/react'
 import { Monitor, Moon, Sun } from 'lucide-react'
 import { Button } from '@/shared/ui/button'
 

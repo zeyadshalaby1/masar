@@ -1,4 +1,4 @@
-import { defineResource } from 'masar'
+import { defineResource } from '@zeyadshalaby1/masar'
 import { banners } from '../../banners/schema'
 
 export default defineResource(banners, {
