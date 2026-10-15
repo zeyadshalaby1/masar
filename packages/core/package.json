@@ -1,9 +1,37 @@
 {
   "name": "@masar/core",
   "version": "0.1.0",
-  "description": "Masar \u2014 one clear path from idea to production. The runtime core: modules, actions, pages, data layer.",
-  "type": "module",
+  "description": "The Masar runtime: modules, actions, pages with SSR, one data layer for SQLite, Postgres and MongoDB, auth, jobs, mail, storage and the admin panel.",
+  "keywords": [
+    "masar",
+    "framework",
+    "fullstack",
+    "typescript",
+    "react",
+    "inertia",
+    "hono",
+    "vite",
+    "ssr",
+    "orm",
+    "admin",
+    "rtl",
+    "arabic"
+  ],
+  "homepage": "https://masar.zeyad.io",
+  "bugs": {
+    "url": "https://github.com/zeyadshalaby1/masar/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeyadshalaby1/masar.git",
+    "directory": "packages/core"
+  },
   "license": "FSL-1.1-ALv2",
+  "author": "Zeyad Shalaby (https://zeyadshalaby.com)",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
   "exports": {
     ".": "./src/index.ts",
     "./server": "./src/server/index.ts",
@@ -50,5 +78,8 @@
     "react-dom": "^19.3.1",
     "typescript": "^5.9.3",
     "vite": "^8.3.4"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

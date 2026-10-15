@@ -21,6 +21,8 @@
 </p>
 
 <p align="center">
+  <a href="https://www.npmjs.com/package/@masar/core"><img alt="npm version" src="https://img.shields.io/npm/v/%40masar%2Fcore?color=FF5A1F&labelColor=100C0A"></a>
+  <a href="https://www.npmjs.com/package/create-masar"><img alt="Create Masar" src="https://img.shields.io/badge/npm%20create-masar-FF5A1F?labelColor=100C0A"></a>
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-strict-100C0A?labelColor=FF5A1F">
   <img alt="Node" src="https://img.shields.io/badge/Node-22.13%2B-100C0A?labelColor=FF5A1F">
   <img alt="Databases" src="https://img.shields.io/badge/SQLite%20%C2%B7%20Postgres%20%C2%B7%20MongoDB-one%20API-100C0A?labelColor=FF5A1F">
@@ -148,24 +150,95 @@ npx masar make:module courses   # model + CRUD actions + pages + form, ready to 
 
 Prefer the terminal? `npm create masar@latest my-app -- --cli`.
 
-## How it compares
+## A different unit of progress: the feature
 
-| | **Masar** | Next.js | Laravel | AdonisJS | NestJS |
-| --- | :---: | :---: | :---: | :---: | :---: |
-| Language | TypeScript | TypeScript | PHP | TypeScript | TypeScript |
-| Full-stack in one project (UI + API) | ✅ | ✅ | ✅ (with Inertia) | ✅ (with Inertia) | API only |
-| Database layer included | ✅ SQL + MongoDB | ❌ bring your own | ✅ SQL | ✅ SQL | ❌ bring your own |
-| Typed calls from UI to server, no API layer | ✅ actions | ✅ server actions | ❌ | ❌ | ❌ |
-| Same function as REST API for mobile | ✅ one flag | ❌ write route handlers | ❌ write controllers | ❌ write controllers | ✅ |
-| Auth with email confirmation and reset | ✅ built in | ❌ library | ✅ starter kits | ✅ | ❌ library |
-| Queue + scheduler without Redis | ✅ on your database | ❌ | ✅ database driver | ❌ (Redis) | ❌ library |
-| Generated admin panel | ✅ built in | ❌ | ⚠️ Filament / Nova (separate) | ❌ | ❌ |
-| Arabic / RTL built in | ✅ automatic | ❌ | ⚠️ manual | ❌ | ❌ |
-| Feature = one folder | ✅ modules | ❌ split by type | ❌ split by type | ❌ split by type | ✅ modules |
-| Agent instructions shipped with every app | ✅ | ✅ (recent versions) | ⚠️ Laravel Boost | ❌ | ❌ |
+Masar's bet is simple: **a feature should be the unit you build, review and ship**.
+A course, invoice or booking belongs in one module, together with its data, actions, pages and background work.
+The framework connects those parts, so adding the next feature follows the same path as the first.
 
-Comparison of what comes in the box with each framework's default setup, to the best of our knowledge.
-Every one of these frameworks is excellent; Masar's bet is having one path with everything in it.
+The shift is from assembling infrastructure for every app to declaring the product you want to build:
+
+1. **Describe the data.** Models define fields, validation metadata and the shape the admin can use.
+2. **Write the operation once.** An action validates input and checks authorization before business logic runs.
+3. **Expose it deliberately.** React calls the action through typed RPC; `expose: { api: true }` also makes
+   the module's actions available as JSON endpoints for other clients.
+4. **Keep the workflow together.** Pages, jobs, schedules, mail and seeds live alongside the feature.
+
+### Why Masar has its own architecture
+
+Masar applications run on **Hono + Vite + React + Inertia**. They do not depend on Next.js.
+Masar owns module discovery, its action protocol, database access, authentication and the application lifecycle.
+React provides the UI; Inertia handles page navigation; Vite compiles client and server builds.
+
+| Design choice | What it means in a Masar app |
+| --- | --- |
+| Feature folders | Business logic and UI for one capability stay under `src/modules/<feature>/`. |
+| Server page loaders | `load()` reads on the server; its result becomes the React page's props. |
+| Actions with authorization | Writes go through validated server operations with an explicit access rule. |
+| One data API | Modules choose SQLite, PostgreSQL or MongoDB through named connections. |
+| Database-backed services | Jobs, schedules and sessions can share the application's database. |
+| Arabic and English starter | Translation files, locale switching and RTL are part of the starting app. |
+
+This is an opinionated choice for products that need a UI, API and back office together.
+Choose it for that workflow, and evaluate the **0.1** release against your application's requirements.
+The promise is less integration work and a predictable place for each feature, rather than a universal performance claim.
+
+## Application structure
+
+`npm create masar@latest my-app` creates a standalone application:
+
+```text
+my-app/
+├── package.json              scripts and published Masar dependencies
+├── tsconfig.json             strict TypeScript and the @/ alias
+├── components.json           shadcn/ui configuration
+├── .env                      local secrets; never commit this file
+├── .env.example              configuration reference without secrets
+├── .gitignore
+├── AGENTS.md                 framework instructions for coding agents
+├── CLAUDE.md                 additional agent entry point
+├── public/                   static files and favicon
+└── src/
+    ├── config/
+    │   ├── app.ts            app URL, port, locales and security
+    │   ├── database.ts       named database connections
+    │   ├── mail.ts           mail transport
+    │   └── storage.ts        local and S3-compatible disks
+    ├── locales/              en.json, ar.json
+    ├── shared/
+    │   ├── ui/               editable shadcn/ui components
+    │   ├── components/       navigation, language and theme controls
+    │   ├── layouts/          shared React layouts
+    │   ├── styles/           application CSS
+    │   └── lib/              shared helpers
+    └── modules/
+        ├── home/             starter landing page
+        ├── auth/             login, registration and email flows
+        ├── admin/            dashboard and user resource
+        └── courses/          example feature: generated with make:module
+            ├── module.ts     URL prefix, exposure and authorization
+            ├── schema.ts     models
+            ├── actions.ts    validated server operations
+            └── views/
+                ├── pages/    index.tsx, [id].tsx and other page files
+                └── components/
+```
+
+The `courses/` folder is an example, added with `npx masar make:module courses`.
+Optional module files include `routes.ts`, `schedule.ts`, `seeds.ts`, `jobs/`, `mail/` and migrations.
+Masar creates `.masar/` for generated entries, `database/` for the default SQLite database,
+`storage/` for local uploads and `dist/` when you build. These are generated or runtime data, not feature source.
+
+## npm packages
+
+| Package | Purpose |
+| --- | --- |
+| [`create-masar`](https://www.npmjs.com/package/create-masar) | The installer behind `npm create masar@latest`. |
+| [`@masar/core`](https://www.npmjs.com/package/@masar/core) | Runtime, server and React APIs. |
+| [`@masar/cli`](https://www.npmjs.com/package/@masar/cli) | The `masar` development, build, database and generator commands. |
+
+The installer adds compatible versions for you. Framework maintainers can follow
+[RELEASING.md](RELEASING.md) to validate and publish an update.
 
 ## Benchmarks
 
@@ -243,7 +316,8 @@ email flows, SQLite and PostgreSQL with identical results, multiple databases in
 queue across processes, schedules, uploads to local disks and S3 (MinIO), the admin panel.
 The MongoDB adapter has had less testing so far.
 
-Next: an automated test suite for the packages and publishing `@masar/*` to npm.
+Release checks include TypeScript validation, a production build and an isolated install of the packed npm artifacts.
+See [RELEASING.md](RELEASING.md) for the release process. The adapters and integrations still need broader automated coverage.
 
 <p align="center"><img src="brand/brand-sheet.png" alt="Masar brand sheet" width="760"></p>
 

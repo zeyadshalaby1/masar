@@ -1,13 +1,44 @@
 {
   "name": "@masar/cli",
   "version": "0.1.0",
-  "description": "The masar command: dev server, build, generators and database tools.",
-  "type": "module",
+  "description": "The masar command: dev server, production build, generators, migrations, seeds and workers.",
+  "keywords": [
+    "masar",
+    "framework",
+    "fullstack",
+    "typescript",
+    "react",
+    "inertia",
+    "hono",
+    "vite",
+    "ssr",
+    "orm",
+    "admin",
+    "rtl",
+    "arabic"
+  ],
+  "homepage": "https://masar.zeyad.io",
+  "bugs": {
+    "url": "https://github.com/zeyadshalaby1/masar/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeyadshalaby1/masar.git",
+    "directory": "packages/cli"
+  },
   "license": "FSL-1.1-ALv2",
+  "author": "Zeyad Shalaby (https://zeyadshalaby.com)",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
   "bin": {
     "masar": "./bin/masar.js"
   },
-  "files": ["bin", "src"],
+  "files": [
+    "bin",
+    "src"
+  ],
   "scripts": {
     "typecheck": "tsc -p tsconfig.json"
   },
@@ -22,9 +53,15 @@
     "tsx": "^4.23.15",
     "vite": "^8.3.4"
   },
+  "peerDependencies": {
+    "@masar/core": "0.1.0"
+  },
   "devDependencies": {
     "@masar/core": "workspace:*",
     "@types/node": "^24",
     "typescript": "^5.9.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

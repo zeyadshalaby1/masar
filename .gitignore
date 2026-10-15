@@ -6,3 +6,6 @@ dist
 .env
 .DS_Store
 storage
+
+artifacts/
+.pnpm-store/

@@ -1,15 +1,52 @@
 {
   "name": "create-masar",
   "version": "0.1.0",
-  "description": "Create a new Masar app: npm create masar@latest",
-  "type": "module",
+  "description": "Create a Masar app: npm create masar@latest. Opens a setup page in your browser.",
+  "keywords": [
+    "masar",
+    "framework",
+    "fullstack",
+    "typescript",
+    "react",
+    "inertia",
+    "hono",
+    "vite",
+    "ssr",
+    "orm",
+    "admin",
+    "rtl",
+    "arabic"
+  ],
+  "homepage": "https://masar.zeyad.io",
+  "bugs": {
+    "url": "https://github.com/zeyadshalaby1/masar/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeyadshalaby1/masar.git",
+    "directory": "packages/create-masar"
+  },
   "license": "FSL-1.1-ALv2",
+  "author": "Zeyad Shalaby (https://zeyadshalaby.com)",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
   "bin": {
     "create-masar": "./index.js"
   },
-  "files": ["index.js", "web.js", "installer.html", "template"],
+  "files": [
+    "index.js",
+    "web.js",
+    "installer.html",
+    "template",
+    "TEMPLATE_LICENSE.md"
+  ],
   "dependencies": {
     "@clack/prompts": "^1.8.1",
     "picocolors": "^1.1.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
