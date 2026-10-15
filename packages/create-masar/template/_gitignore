@@ -1,0 +1,7 @@
+node_modules
+dist
+.masar
+database/*.sqlite*
+.env
+.DS_Store
+storage/

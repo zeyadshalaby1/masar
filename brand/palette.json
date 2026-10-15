@@ -1,0 +1,47 @@
+{
+  "name": "Masar",
+  "named": {
+    "orange": "#FF5A1F",
+    "ember": "#B03700",
+    "glow": "#FFE9E3",
+    "ink": "#100C0A",
+    "paper": "#FCF9F8",
+    "stone": "#625953"
+  },
+  "scales": {
+    "orange": {
+      "50": "#FFF4F1",
+      "100": "#FFE9E3",
+      "200": "#FED3C6",
+      "300": "#FFB29B",
+      "400": "#FD8966",
+      "500": "#FF5A1F",
+      "600": "#D9480E",
+      "700": "#B03700",
+      "800": "#8A2C04",
+      "900": "#692409",
+      "950": "#3C1304"
+    },
+    "neutral": {
+      "50": "#FCF9F8",
+      "100": "#F7F2F0",
+      "200": "#E9E3E0",
+      "300": "#D6CFCB",
+      "400": "#ABA39D",
+      "500": "#827872",
+      "600": "#625953",
+      "700": "#463E39",
+      "800": "#2E2723",
+      "900": "#1C1714",
+      "950": "#100C0A"
+    }
+  },
+  "usage": {
+    "orange-500": "Logo, accents, primary button background (with ink text)",
+    "orange-700": "Orange text and links on light backgrounds (5.9:1)",
+    "orange-100": "Tinted backgrounds: hints, selected items",
+    "neutral-950": "Text and dark backgrounds",
+    "neutral-50": "Light background",
+    "neutral-600": "Secondary text (6.5:1)"
+  }
+}

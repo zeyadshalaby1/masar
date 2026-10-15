@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+/* The admin UI ships with @masar/core and is styled with this theme. */
+@source "../../../node_modules/@masar/core/src/admin";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.625rem;
+  --background: #FCF9F8;
+  --foreground: #100C0A;
+  --card: #FFFFFF;
+  --card-foreground: #100C0A;
+  --popover: #FFFFFF;
+  --popover-foreground: #100C0A;
+  /* Masar orange with ink text: 6.2:1 contrast (white on orange is only 3.1:1) */
+  --primary: #FF5A1F;
+  --primary-foreground: #100C0A;
+  --secondary: #F7F2F0;
+  --secondary-foreground: #1C1714;
+  --muted: #F7F2F0;
+  --muted-foreground: #625953;
+  --accent: #FFE9E3;
+  --accent-foreground: #8A2C04;
+  /* crimson, kept clearly apart from the orange */
+  --destructive: #C81E3A;
+  --border: #E9E3E0;
+  --input: #D6CFCB;
+  --ring: #FF5A1F;
+  --brand: #FF5A1F;
+  /* orange text on light backgrounds (5.9:1) */
+  --brand-ink: #B03700;
+}
+
+.dark {
+  --background: #100C0A;
+  --foreground: #FCF9F8;
+  --card: #1C1714;
+  --card-foreground: #FCF9F8;
+  --popover: #1C1714;
+  --popover-foreground: #FCF9F8;
+  --primary: #FF5A1F;
+  --primary-foreground: #100C0A;
+  --secondary: #2E2723;
+  --secondary-foreground: #FCF9F8;
+  --muted: #2E2723;
+  --muted-foreground: #ABA39D;
+  --accent: #3C1304;
+  --accent-foreground: #FFB29B;
+  --destructive: #F2546B;
+  --border: rgb(255 255 255 / 10%);
+  --input: rgb(255 255 255 / 15%);
+  --ring: #FD8966;
+  --brand: #FF5A1F;
+  --brand-ink: #FD8966;
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}

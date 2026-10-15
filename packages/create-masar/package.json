@@ -1,0 +1,15 @@
+{
+  "name": "create-masar",
+  "version": "0.1.0",
+  "description": "Create a new Masar app: npm create masar@latest",
+  "type": "module",
+  "license": "FSL-1.1-ALv2",
+  "bin": {
+    "create-masar": "./index.js"
+  },
+  "files": ["index.js", "web.js", "installer.html", "template"],
+  "dependencies": {
+    "@clack/prompts": "^1.8.1",
+    "picocolors": "^1.1.1"
+  }
+}

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masar brand</title>
+<style>
+  @font-face { font-family: Bricolage; src: url(fonts/bricolage-grotesque-latin-800-normal.woff2) format('woff2'); font-weight: 800; }
+  @font-face { font-family: Bricolage; src: url(fonts/bricolage-grotesque-latin-600-normal.woff2) format('woff2'); font-weight: 600; }
+  @font-face { font-family: Alexandria; src: url(fonts/alexandria-arabic-700-normal.woff2) format('woff2'); font-weight: 700; }
+  @font-face { font-family: Alexandria; src: url(fonts/alexandria-arabic-500-normal.woff2) format('woff2'); font-weight: 500; }
+  :root { --orange:#FF5A1F; --ember:#B03700; --glow:#FFE9E3; --ink:#100C0A; --paper:#FCF9F8; --stone:#625953; --line:#E9E3E0; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: Alexandria, Bricolage, system-ui, sans-serif; font-weight: 500; }
+  main { max-width: 1120px; margin: 0 auto; padding: 72px 48px 96px; }
+  h1 { font: 700 15px/1 Alexandria, sans-serif; color: var(--stone); margin: 0 0 18px; }
+  h2 { font: 700 22px/1.3 Alexandria, sans-serif; margin: 0 0 6px; }
+  p { margin: 0; line-height: 1.7; color: var(--stone); max-width: 62ch; }
+  .latin { font-family: Bricolage, sans-serif; direction: ltr; unicode-bidi: isolate; }
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  section:first-of-type { border-top: 0; padding-top: 0; }
+  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 28px; overflow: hidden; }
+  .hero > div { display: grid; place-items: center; min-height: 300px; padding: 40px; }
+  .hero .light { background: #fff; border: 1px solid var(--line); border-inline-start: 0; border-radius: 0 28px 28px 0; }
+  .hero .dark { background: var(--ink); }
+  .marks { display: flex; gap: 28px; align-items: center; margin-top: 28px; flex-wrap: wrap; }
+  .marks figure { margin: 0; display: grid; gap: 10px; justify-items: center; font-size: 13px; color: var(--stone); }
+  .swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; margin-top: 28px; }
+  .swatch { border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: #fff; }
+  .swatch .chip { height: 128px; display: flex; align-items: flex-end; padding: 12px; font: 800 26px/1 Bricolage, sans-serif; }
+  .swatch .meta { padding: 12px 14px 14px; font-size: 13px; line-height: 1.6; }
+  .swatch b { display: block; font-size: 15px; color: var(--ink); }
+  .swatch code { font: 600 13px Bricolage, ui-monospace, monospace; color: var(--stone); direction: ltr; display: inline-block; }
+  .scale { display: grid; grid-template-columns: repeat(11, 1fr); border-radius: 14px; overflow: hidden; margin-top: 18px; direction: ltr; }
+  .scale div { height: 64px; display: flex; align-items: flex-end; padding: 8px; font: 600 11px Bricolage, sans-serif; }
+  .rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
+  .rule { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 22px; }
+  .demo { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; direction: ltr; }
+  .btn { font: 600 15px Bricolage, sans-serif; border-radius: 10px; padding: 10px 18px; border: 0; }
+  .type { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 28px; }
+  .type .sample { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 28px; }
+  .big-latin { font: 800 64px/1 Bricolage, sans-serif; letter-spacing: -0.035em; direction: ltr; text-align: left; }
+  .big-ar { font: 700 60px/1.2 Alexandria, sans-serif; }
+  @media (max-width: 860px) { .hero, .type, .rules { grid-template-columns: 1fr; } .swatches { grid-template-columns: repeat(2, 1fr); } .hero .light { border-radius: 28px 28px 0 0; border-inline-start: 1px solid var(--line); } }
+</style>
+</head>
+<body>
+<main>
+  <section>
+    <h1>هوية مسار · Masar brand</h1>
+    <div class="hero">
+      <div class="light"><img src="logo.svg" alt="Masar" height="84"></div>
+      <div class="dark"><img src="logo-ar-on-dark.svg" alt="مسار" height="84"></div>
+    </div>
+    <div class="marks">
+      <figure><img src="mark.svg" width="96" alt=""><figcaption>mark.svg</figcaption></figure>
+      <figure><img src="mark-ink.svg" width="96" alt=""><figcaption>mark-ink.svg</figcaption></figure>
+      <figure><img src="mark-mono.svg" width="96" alt=""><figcaption>mark-mono.svg</figcaption></figure>
+      <figure><img src="favicon.svg" width="32" alt=""><figcaption>favicon 32</figcaption></figure>
+      <figure><img src="favicon.svg" width="16" alt=""><figcaption>favicon 16</figcaption></figure>
+    </div>
+    <p style="margin-top:24px">الشعار حرف M مرسوم كطريق واحد متصل: يبدأ من حلقة مفتوحة (البداية) وينتهي بنقطة ممتلئة (الوصول). نفس فكرة الاسم: مسار واحد واضح من الفكرة للإنتاج.</p>
+  </section>
+
+  <section>
+    <h2>الألوان الأساسية</h2>
+    <p>البرتقالي هو صوت مسار. يُستخدم بجرأة لكن في مكان واحد في كل شاشة: زر، شعار، أو نقطة تنبيه.</p>
+    <div class="swatches">
+      <div class="swatch"><div class="chip" style="background:#FF5A1F;color:#100C0A">Aa</div><div class="meta"><b>برتقالي مسار</b><code>#FF5A1F</code><br>الشعار والزر الأساسي</div></div>
+      <div class="swatch"><div class="chip" style="background:#B03700;color:#fff">Aa</div><div class="meta"><b>جمر</b><code>#B03700</code><br>نص برتقالي على فاتح</div></div>
+      <div class="swatch"><div class="chip" style="background:#FFE9E3;color:#8A2C04">Aa</div><div class="meta"><b>توهج</b><code>#FFE9E3</code><br>خلفيات التنبيه والتحديد</div></div>
+      <div class="swatch"><div class="chip" style="background:#100C0A;color:#FF5A1F">Aa</div><div class="meta"><b>حبر</b><code>#100C0A</code><br>النص والخلفية الداكنة</div></div>
+      <div class="swatch"><div class="chip" style="background:#FCF9F8;color:#100C0A">Aa</div><div class="meta"><b>ورق</b><code>#FCF9F8</code><br>الخلفية الفاتحة</div></div>
+      <div class="swatch"><div class="chip" style="background:#625953;color:#fff">Aa</div><div class="meta"><b>حجر</b><code>#625953</code><br>النص الثانوي</div></div>
+    </div>
+    <div class="scale" id="orange"></div>
+    <div class="scale" id="neutral"></div>
+  </section>
+
+  <section>
+    <h2>قواعد الاستخدام</h2>
+    <div class="rules">
+      <div class="rule">
+        <div class="demo"><button class="btn" style="background:#FF5A1F;color:#100C0A">Create course</button></div>
+        <b>الزر الأساسي: برتقالي ونص حبر</b>
+        <p>النص الأبيض على البرتقالي ضعيف (٣٫١:١). الحبر على البرتقالي ٦٫٢:١.</p>
+      </div>
+      <div class="rule">
+        <div class="demo"><span style="font:600 16px Bricolage;color:#B03700;text-decoration:underline">View all modules</span></div>
+        <b>الروابط والنص البرتقالي: جمر</b>
+        <p>على الخلفية الفاتحة استخدم ‎#B03700‎ (٥٫٩:١)، وليس البرتقالي الأساسي.</p>
+      </div>
+      <div class="rule">
+        <div class="demo"><span style="background:#FFE9E3;color:#8A2C04;padding:8px 12px;border-radius:8px;font:600 14px Bricolage">Run masar db:sync</span></div>
+        <b>التنبيهات: توهج مع برتقالي ٨٠٠</b>
+        <p>نفس اللون في صفحة الخطأ ورسائل التلميح في الإطار.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>الخطوط</h2>
+    <div class="type">
+      <div class="sample"><div class="big-latin">masar</div><p class="latin" style="margin-top:14px">Bricolage Grotesque · ExtraBold 800 · tracking −3.5%</p></div>
+      <div class="sample"><div class="big-ar">مسار</div><p style="margin-top:14px">Alexandria · Bold 700</p></div>
+    </div>
+  </section>
+</main>
+<script>
+  window.__palette = {"name": "Masar", "named": {"orange": "#FF5A1F", "ember": "#B03700", "glow": "#FFE9E3", "ink": "#100C0A", "paper": "#FCF9F8", "stone": "#625953"}, "scales": {"orange": {"50": "#FFF4F1", "100": "#FFE9E3", "200": "#FED3C6", "300": "#FFB29B", "400": "#FD8966", "500": "#FF5A1F", "600": "#D9480E", "700": "#B03700", "800": "#8A2C04", "900": "#692409", "950": "#3C1304"}, "neutral": {"50": "#FCF9F8", "100": "#F7F2F0", "200": "#E9E3E0", "300": "#D6CFCB", "400": "#ABA39D", "500": "#827872", "600": "#625953", "700": "#463E39", "800": "#2E2723", "900": "#1C1714", "950": "#100C0A"}}, "usage": {"orange-500": "Logo, accents, primary button background (with ink text)", "orange-700": "Orange text and links on light backgrounds (5.9:1)", "orange-100": "Tinted backgrounds: hints, selected items", "neutral-950": "Text and dark backgrounds", "neutral-50": "Light background", "neutral-600": "Secondary text (6.5:1)"}};
+  const scales = {"orange": {}, "neutral": {}};
+  fetch('palette.json').then(r => r.json()).then(fill).catch(() => fill(window.__palette));
+  function fill(p) {
+    if (!p) return;
+    for (const name of ['orange', 'neutral']) {
+      const el = document.getElementById(name);
+      for (const [k, v] of Object.entries(p.scales[name])) {
+        const d = document.createElement('div');
+        d.style.background = v;
+        d.style.color = +k >= 500 ? '#fff' : '#100C0A';
+        d.textContent = k;
+        el.appendChild(d);
+      }
+    }
+  }
+</script>
+</body>
+</html>

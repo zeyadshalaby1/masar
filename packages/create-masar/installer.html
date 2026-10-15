@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create a Masar app</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23FF5A1F'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --orange: #FF5A1F; --ember: #B03700; --glow: #FFE9E3; --ink: #100C0A; --paper: #FCF9F8; --stone: #625953;
+    --card: #FFFFFF; --line: #E9E3E0; --muted: #827872; --field: #FFFFFF; --ok: #1F7A4D; --bad: #C81E3A;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ember: #FF8A5C; --glow: #2A1A13; --ink: #F5EFEC; --paper: #100C0A; --stone: #B5ABA5; --card: #1A1513; --line: #2E2724; --muted: #8F857F; --field: #120E0C; --ok: #4FC48A; --bad: #FF6B81; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.55 -apple-system, 'Segoe UI', Roboto, system-ui, sans-serif; }
+  a { color: var(--ember); }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 32px 16px 80px; }
+  header { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+  header svg { width: 44px; height: 44px; flex: none; }
+  header h1 { margin: 0; font-size: 22px; letter-spacing: -0.02em; }
+  header p { margin: 2px 0 0; color: var(--stone); font-size: 14px; }
+  .hero { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .hero p { margin: 0; color: var(--stone); max-width: 520px; }
+  .hero strong { color: var(--ink); }
+  section { background: var(--card); border: 1px solid var(--line); border-radius: 16px; margin-bottom: 14px; overflow: hidden; }
+  section > .head { display: flex; align-items: center; gap: 12px; padding: 16px 20px; }
+  .num { width: 28px; height: 28px; border-radius: 8px; background: var(--glow); color: var(--ember); font-weight: 700; display: grid; place-items: center; font-size: 13px; flex: none; }
+  .head h2 { margin: 0; font-size: 16px; flex: 1; }
+  .head small { display: block; color: var(--muted); font-weight: 400; font-size: 13px; }
+  .body { padding: 0 20px 20px; padding-inline-start: 60px; display: grid; gap: 14px; }
+  section.skipped .body { display: none; }
+  section.skipped .num { background: var(--line); color: var(--muted); }
+  .tag { display: none; font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; }
+  section.skipped .tag { display: inline-block; }
+  .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  label.field { display: grid; gap: 6px; font-size: 13px; font-weight: 600; }
+  label.field span.hint { font-weight: 400; color: var(--muted); }
+  input[type=text], input[type=password], input[type=email], input[type=number], input[type=url], select {
+    width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--field); color: var(--ink); font: inherit;
+  }
+  input:focus, select:focus { outline: 2px solid var(--orange); outline-offset: 1px; border-color: transparent; }
+  html[dir=rtl] input:not([type=checkbox]):not([type=radio]) { direction: ltr; text-align: right; }
+  input.invalid { border-color: var(--bad); }
+  .error { color: var(--bad); font-size: 13px; min-height: 0; }
+  .choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+  .choice { position: relative; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; cursor: pointer; display: grid; gap: 2px; }
+  .choice input { position: absolute; opacity: 0; }
+  .choice b { font-size: 14px; }
+  .choice em { font-style: normal; color: var(--muted); font-size: 12.5px; }
+  .choice:has(input:checked) { border-color: var(--orange); background: var(--glow); }
+  .choice:has(input:focus-visible) { outline: 2px solid var(--orange); }
+  .toggle { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+  .toggle input { margin-top: 4px; accent-color: var(--orange); width: 16px; height: 16px; }
+  .toggle em { display: block; font-style: normal; color: var(--muted); font-size: 13px; }
+  .note { background: var(--glow); border-radius: 10px; padding: 10px 12px; font-size: 13px; color: var(--ink); }
+  .note code, code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; }
+  [hidden] { display: none !important; }
+  button { font: inherit; cursor: pointer; border-radius: 10px; border: 1px solid var(--line); background: transparent; color: var(--ink); padding: 8px 14px; }
+  button:hover { border-color: var(--stone); }
+  button.primary { background: var(--orange); color: #100C0A; border-color: var(--orange); font-weight: 700; padding: 12px 20px; }
+  button.primary:hover { filter: brightness(0.95); }
+  button.small { font-size: 13px; padding: 6px 12px; color: var(--stone); }
+  button:disabled { opacity: .6; cursor: default; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: flex-end; margin-top: 22px; }
+  .actions p { margin: 0; margin-inline-end: auto; color: var(--muted); font-size: 13px; }
+  #progress { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  #progress h2 { margin: 0 0 14px; font-size: 18px; }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .steps li { display: flex; gap: 10px; align-items: center; color: var(--muted); }
+  .steps li.done { color: var(--ink); }
+  .steps li.active { color: var(--ink); font-weight: 600; }
+  .dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--line); flex: none; display: grid; place-items: center; font-size: 11px; }
+  .done .dot { background: var(--ok); border-color: var(--ok); color: #fff; }
+  .active .dot { border-color: var(--orange); border-top-color: transparent; animation: spin .8s linear infinite; }
+  .failed .dot { background: var(--bad); border-color: var(--bad); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  pre { background: var(--ink); color: var(--paper); border-radius: 12px; padding: 16px; overflow-x: auto; margin: 16px 0 0; }
+  @media (prefers-color-scheme: dark) { pre { background: #000; color: #F5EFEC; } }
+  footer { margin-top: 36px; text-align: center; color: var(--muted); font-size: 13px; }
+  @media (max-width: 560px) { .body { padding-inline-start: 20px; } }
+  .lang { margin-inline-start: auto; }
+  html[dir=rtl] body { font-family: Tahoma, 'Segoe UI', system-ui, sans-serif; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#FF5A1F"/><path d="M16 41.2 V24.5 C16 15.5 25.6 14.6 28.6 23.4 L32 33.6 L35.4 23.4 C38.4 14.6 48 15.5 48 24.5 V40" fill="none" stroke="#100C0A" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="46.8" r="3.9" fill="none" stroke="#100C0A" stroke-width="3.89"/><circle cx="48" cy="46.2" r="6.4" fill="#100C0A"/></svg>
+    <div>
+      <h1>Create a Masar app</h1>
+      <p>One clear path from idea to production · v__VERSION__</p>
+    </div>
+    <button type="button" class="small lang" id="lang">العربية</button>
+  </header>
+
+  <form id="setup" novalidate>
+    <div class="hero">
+      <p><strong>Every step is optional.</strong> Skip any of them and Masar uses a default that runs right away. You can change all of it later in <code>.env</code> and <code>src/config/</code>.</p>
+      <button type="button" class="primary" id="defaults">Use defaults and create</button>
+    </div>
+
+    <section data-step="project">
+      <div class="head"><div class="num">1</div><h2>Project<small>Name, address and dependencies</small></h2></div>
+      <div class="body">
+        <div class="row">
+          <label class="field">Project name <span class="hint">The folder and package name</span>
+            <input type="text" name="name" required pattern="[a-z0-9][a-z0-9\-_]*" autocomplete="off"></label>
+          <label class="field">Port <span class="hint">For the dev and production server</span>
+            <input type="number" name="port" value="3000" min="1" max="65535"></label>
+        </div>
+        <label class="field">App URL <span class="hint">Used in mail links and the sitemap. Change it when you deploy.</span>
+          <input type="url" name="url" value="http://localhost:3000"></label>
+        <div class="row">
+          <label class="field">Package manager
+            <select name="pm"><option>npm</option><option>pnpm</option><option>yarn</option><option>bun</option></select></label>
+        </div>
+        <label class="toggle"><input type="checkbox" name="install" checked><span>Install dependencies now<em>Runs the package manager in the terminal you started from.</em></span></label>
+        <div class="error" data-dynamic data-error="project"></div>
+      </div>
+    </section>
+
+    <section data-step="database">
+      <div class="head"><div class="num">2</div><h2>Database<small>Where your models live</small></h2><span class="tag">SQLite</span><button type="button" class="small" data-skip>Skip</button></div>
+      <div class="body">
+        <div class="choices">
+          <label class="choice"><input type="radio" name="db" value="sqlite" checked><b>SQLite</b><em>Built into Node, nothing to install</em></label>
+          <label class="choice"><input type="radio" name="db" value="postgres"><b>PostgreSQL</b><em>Needs a running Postgres server</em></label>
+          <label class="choice"><input type="radio" name="db" value="mongodb"><b>MongoDB</b><em>Needs a running MongoDB server</em></label>
+        </div>
+        <label class="field" data-when="db=postgres,mongodb">Connection URL <span class="hint">Leave empty to use a local server with default settings</span>
+          <input type="text" name="databaseUrl" autocomplete="off" spellcheck="false"></label>
+      </div>
+    </section>
+
+    <section data-step="languages">
+      <div class="head"><div class="num">3</div><h2>Languages and time<small>Arabic switches pages to right-to-left on its own</small></h2><span class="tag">English + Arabic</span><button type="button" class="small" data-skip>Skip</button></div>
+      <div class="body">
+        <div class="choices">
+          <label class="choice"><input type="checkbox" name="locales" value="en" checked><b>English</b><em>en</em></label>
+          <label class="choice"><input type="checkbox" name="locales" value="ar" checked><b>العربية</b><em>ar · right-to-left</em></label>
+        </div>
+        <div class="row">
+          <label class="field">Default language <span class="hint">When the browser asks for none of the above</span>
+            <select name="locale"><option value="en">English</option><option value="ar">العربية</option></select></label>
+          <label class="field">Timezone <span class="hint">For scheduled tasks like at('03:00')</span>
+            <input type="text" name="timezone" list="zones" autocomplete="off"></label>
+          <datalist id="zones"><option>Africa/Cairo</option><option>Asia/Riyadh</option><option>Asia/Dubai</option><option>Europe/London</option><option>Europe/Berlin</option><option>America/New_York</option><option>America/Los_Angeles</option><option>UTC</option></datalist>
+        </div>
+        <div class="error" data-dynamic data-error="languages"></div>
+      </div>
+    </section>
+
+    <section data-step="mail">
+      <div class="head"><div class="num">4</div><h2>Mail<small>Account confirmation, password reset and your own mails</small></h2><span class="tag">Printed in the terminal</span><button type="button" class="small" data-skip>Skip</button></div>
+      <div class="body">
+        <div class="choices">
+          <label class="choice"><input type="radio" name="mail" value="log" checked><b>Development only</b><em>Mails show in the terminal and at /_masar/mail</em></label>
+          <label class="choice"><input type="radio" name="mail" value="smtp"><b>SMTP</b><em>Gmail, Mailgun, SES, any mail server</em></label>
+          <label class="choice"><input type="radio" name="mail" value="resend"><b>Resend</b><em>An API key from resend.com</em></label>
+        </div>
+        <label class="field">Sender <span class="hint">The From of every mail</span>
+          <input type="text" name="mailFrom" placeholder="My App <hello@example.com>"></label>
+        <div class="row" data-when="mail=smtp">
+          <label class="field">Host<input type="text" name="smtpHost" placeholder="smtp.gmail.com" autocomplete="off"></label>
+          <label class="field">Port<input type="number" name="smtpPort" value="587"></label>
+          <label class="field">User<input type="text" name="smtpUser" autocomplete="off"></label>
+          <label class="field">Password<input type="password" name="smtpPass" autocomplete="new-password"></label>
+        </div>
+        <label class="field" data-when="mail=resend">API key<input type="password" name="resendKey" placeholder="re_..." autocomplete="off"></label>
+        <p class="note" data-when="mail=smtp,resend">Secrets are written only to <code>.env</code> in the new app, which is in <code>.gitignore</code>. Nothing leaves your machine.</p>
+      </div>
+    </section>
+
+    <section data-step="storage">
+      <div class="head"><div class="num">5</div><h2>File storage<small>Where uploads (images, videos, documents) go</small></h2><span class="tag">This server's disk</span><button type="button" class="small" data-skip>Skip</button></div>
+      <div class="body">
+        <div class="choices">
+          <label class="choice"><input type="radio" name="storage" value="local" checked><b>Local disk</b><em>The storage/ folder on the server</em></label>
+          <label class="choice"><input type="radio" name="storage" value="s3"><b>S3-compatible</b><em>AWS S3, Cloudflare R2, Spaces, MinIO</em></label>
+        </div>
+        <div class="row" data-when="storage=s3">
+          <label class="field">Bucket<input type="text" name="s3Bucket" autocomplete="off"></label>
+          <label class="field">Region<input type="text" name="s3Region" value="auto"></label>
+          <label class="field">Endpoint <span class="hint">Empty for AWS</span><input type="text" name="s3Endpoint" placeholder="https://&lt;account&gt;.r2.cloudflarestorage.com" autocomplete="off"></label>
+          <label class="field">Public URL <span class="hint">Empty for private files</span><input type="text" name="s3Url" autocomplete="off"></label>
+          <label class="field">Access key<input type="text" name="s3Key" autocomplete="off"></label>
+          <label class="field">Secret key<input type="password" name="s3Secret" autocomplete="new-password"></label>
+        </div>
+      </div>
+    </section>
+
+    <section data-step="admin">
+      <div class="head"><div class="num">6</div><h2>Admin account<small>For the back office at /admin, created by <code>masar db:seed</code></small></h2><span class="tag">admin@example.com</span><button type="button" class="small" data-skip>Skip</button></div>
+      <div class="body">
+        <div class="row">
+          <label class="field">Email<input type="email" name="adminEmail" value="admin@example.com" autocomplete="off"></label>
+          <label class="field">Password <span class="hint">At least 8 characters</span><input type="text" name="adminPassword" autocomplete="off" spellcheck="false"></label>
+        </div>
+        <label class="toggle"><input type="checkbox" name="seed" checked><span>Create it now with sample data<em>Runs <code>masar db:seed</code> after installing. Needs the database to be reachable.</em></span></label>
+        <div class="error" data-dynamic data-error="admin"></div>
+      </div>
+    </section>
+
+    <section data-step="agents">
+      <div class="head"><div class="num">7</div><h2>AI coding agents<small>Claude Code, Codex, Cursor and others</small></h2><span class="tag">Included</span><button type="button" class="small" data-skip>Skip</button></div>
+      <div class="body">
+        <label class="toggle"><input type="checkbox" name="agents" checked><span>Add AGENTS.md and CLAUDE.md<em>Masar is new, so agents do not know it yet. These files teach them the whole framework: modules, actions, pages, the database, jobs, mail and the rules to follow.</em></span></label>
+        <p class="note">Agents can also read the docs at <a href="https://masar.zeyad.io/docs" target="_blank" rel="noopener">masar.zeyad.io/docs</a>, served over MCP too.</p>
+      </div>
+    </section>
+
+    <div class="actions">
+      <p>Nothing is written until you press Create.</p>
+      <button type="submit" class="primary" id="create">Create app</button>
+    </div>
+  </form>
+
+  <div id="progress" hidden>
+    <h2 id="progress-title" data-dynamic>Creating your app</h2>
+    <ul class="steps" id="steps" data-dynamic></ul>
+    <div id="result" hidden>
+      <p id="result-text" data-dynamic></p>
+      <pre id="commands"></pre>
+      <p class="note" id="warning" hidden data-dynamic></p>
+    </div>
+  </div>
+
+  <footer>
+    <a href="https://masar.zeyad.io" target="_blank" rel="noopener">masar.zeyad.io</a> ·
+    <a href="https://masar.zeyad.io/docs" target="_blank" rel="noopener">Docs</a> ·
+    <span>Designed by</span> <a href="https://zeyadshalaby.com" target="_blank" rel="noopener">Zeyad Shalaby</a>
+  </footer>
+</div>
+
+<script>
+  // Arabic for every English text on the page; the English stays the source.
+  const AR = {
+    'Create a Masar app': 'أنشئ تطبيق Masar',
+    'One clear path from idea to production': 'مسار واحد واضح من الفكرة للإنتاج',
+    'Every step is optional.': 'كل خطوة اختيارية.',
+    'Skip any of them and Masar uses a default that runs right away. You can change all of it later in': 'تخطَّ أي خطوة وMasar هيستخدم إعداد افتراضي شغال على طول. تقدر تغير كل ده بعدين في',
+    'and': 'و',
+    'Use defaults and create': 'استخدم الافتراضي وأنشئ',
+    'Project': 'المشروع', 'Name, address and dependencies': 'الاسم والعنوان والحزم',
+    'Project name': 'اسم المشروع', 'The folder and package name': 'اسم الفولدر والحزمة',
+    'Port': 'المنفذ (Port)', 'For the dev and production server': 'لسيرفر التطوير والإنتاج',
+    'App URL': 'رابط التطبيق', 'Used in mail links and the sitemap. Change it when you deploy.': 'بيُستخدم في روابط الإيميلات والـ sitemap. غيّره لما ترفع التطبيق.',
+    'Package manager': 'مدير الحزم', 'Install dependencies now': 'نزّل الحزم دلوقتي',
+    'Runs the package manager in the terminal you started from.': 'بيشغّل مدير الحزم في الترمينال اللي بدأت منه.',
+    'Database': 'قاعدة البيانات', 'Where your models live': 'مكان حفظ البيانات',
+    'Built into Node, nothing to install': 'جوه Node، مفيش حاجة تتسطب',
+    'Needs a running Postgres server': 'محتاج سيرفر Postgres شغال', 'Needs a running MongoDB server': 'محتاج سيرفر MongoDB شغال',
+    'Connection URL': 'رابط الاتصال', 'Leave empty to use a local server with default settings': 'سيبه فاضي لسيرفر محلي بالإعدادات الافتراضية',
+    'Languages and time': 'اللغات والوقت', 'Arabic switches pages to right-to-left on its own': 'العربي بيقلب الصفحات من اليمين للشمال لوحده',
+    'English + Arabic': 'إنجليزي + عربي', 'ar · right-to-left': 'ar · من اليمين للشمال',
+    'Default language': 'اللغة الافتراضية', 'When the browser asks for none of the above': 'لما المتصفح ميطلبش أي لغة منهم',
+    'Timezone': 'المنطقة الزمنية', "For scheduled tasks like at('03:00')": "للمهام المجدولة زي at('03:00')",
+    'Mail': 'الإيميل', 'Account confirmation, password reset and your own mails': 'تأكيد الحساب واسترجاع الباسورد وإيميلاتك',
+    'Printed in the terminal': 'بيتطبع في الترمينال', 'Development only': 'للتطوير بس',
+    'Mails show in the terminal and at /_masar/mail': 'الإيميلات بتظهر في الترمينال وعلى /_masar/mail',
+    'Gmail, Mailgun, SES, any mail server': 'Gmail أو Mailgun أو SES أو أي سيرفر إيميل', 'An API key from resend.com': 'API key من resend.com',
+    'Sender': 'المرسِل', 'The From of every mail': 'خانة From في كل إيميل',
+    'Host': 'الهوست', 'User': 'اليوزر', 'Password': 'الباسورد', 'API key': 'API key',
+    'Secrets are written only to': 'البيانات السرية بتتكتب بس في', 'in the new app, which is in': 'في التطبيق الجديد، وهو موجود في', '. Nothing leaves your machine.': '. مفيش حاجة بتخرج من جهازك.',
+    'File storage': 'تخزين الملفات', 'Where uploads (images, videos, documents) go': 'مكان الملفات المرفوعة (صور، فيديوهات، مستندات)',
+    "This server's disk": 'هارد السيرفر', 'Local disk': 'هارد محلي', 'The storage/ folder on the server': 'فولدر storage/ على السيرفر',
+    'S3-compatible': 'متوافق مع S3', 'Region': 'المنطقة', 'Endpoint': 'Endpoint', 'Empty for AWS': 'فاضي لـ AWS',
+    'Public URL': 'الرابط العام', 'Empty for private files': 'فاضي للملفات الخاصة', 'Access key': 'Access key', 'Secret key': 'Secret key',
+    'Admin account': 'حساب الأدمن', 'For the back office at /admin, created by': 'للوحة التحكم على /admin، بيتعمل بـ',
+    'Email': 'الإيميل', 'At least 8 characters': '8 حروف على الأقل',
+    'Create it now with sample data': 'اعمله دلوقتي مع بيانات تجريبية', 'Runs': 'بيشغّل',
+    'after installing. Needs the database to be reachable.': 'بعد التسطيب. محتاج قاعدة البيانات تكون شغالة.',
+    'AI coding agents': 'وكلاء البرمجة بالذكاء الاصطناعي', 'Claude Code, Codex, Cursor and others': 'Claude Code وCodex وCursor وغيرهم',
+    'Included': 'مضافة', 'Add AGENTS.md and CLAUDE.md': 'ضيف AGENTS.md وCLAUDE.md',
+    'Masar is new, so agents do not know it yet. These files teach them the whole framework: modules, actions, pages, the database, jobs, mail and the rules to follow.': 'Masar جديد، فالـ agents لسه متعرفوش. الملفات دي بتعلمهم الفريم ورك كله: الموديولز والـ actions والصفحات وقاعدة البيانات والـ jobs والإيميل والقواعد اللي يمشوا عليها.',
+    'Agents can also read the docs at': 'والـ agents كمان يقدروا يقروا الدوكس على', ', served over MCP too.': '، ومتاحة كمان عن طريق MCP.',
+    'Nothing is written until you press Create.': 'مفيش حاجة بتتكتب غير لما تدوس إنشاء.',
+    'Create app': 'أنشئ التطبيق', 'Skip': 'تخطي', 'Edit': 'تعديل', 'Docs': 'الدوكس', 'Designed by': 'تصميم',
+    'Creating your app': 'بنجهز تطبيقك', 'Run these in your terminal, then open the app in the browser:': 'شغّل دول في الترمينال، وبعدين افتح التطبيق في المتصفح:',
+    'Project name: use lowercase letters, numbers and dashes.': 'اسم المشروع: حروف إنجليزي صغيرة وأرقام وشرط بس.',
+    'Pick at least one language.': 'اختار لغة واحدة على الأقل.',
+    'The default language must be one of the picked languages.': 'اللغة الافتراضية لازم تكون من اللغات اللي اخترتها.',
+    'Admin: a valid email and a password of 8 characters or more.': 'الأدمن: إيميل صحيح وباسورد 8 حروف أو أكتر.',
+    'Copy the starter app and write your settings': 'نسخ التطبيق المبدئي وكتابة إعداداتك',
+  }
+  // Text that the terminal sends with values inside.
+  const AR_PATTERNS = [
+    [/^Install dependencies with (.+)$/, 'تنزيل الحزم بـ $1'],
+    [/^Create the admin \((.+)\) and sample data$/, 'إنشاء الأدمن ($1) والبيانات التجريبية'],
+    [/^(\S+) install failed\. Run it yourself inside (.+)\.$/, 'تسطيب الحزم بـ $1 فشل. شغّله بنفسك جوه $2.'],
+    [/^Sample data was not created \(is the database running\?\)\. Run (.+) later\.$/, 'البيانات التجريبية متعملتش (قاعدة البيانات شغالة؟). شغّل $1 بعدين.'],
+    [/^Check the database URL in \.env before starting\.$/, 'راجع رابط قاعدة البيانات في .env قبل التشغيل.'],
+    [/^(.+) is ready$/, '$1 جاهز'],
+    [/^(.+) already exists and is not empty\. Pick another name\.$/, 'الفولدر $1 موجود ومش فاضي. اختار اسم تاني.'],
+  ]
+  let lang = 'en'
+  const tr = (text) => {
+    if (lang !== 'ar') return text
+    if (AR[text]) return AR[text]
+    for (const [pattern, ar] of AR_PATTERNS) if (pattern.test(text)) return text.replace(pattern, ar)
+    return text
+  }
+  const originals = new Map()
+  function applyLanguage(next) {
+    lang = next
+    document.documentElement.lang = lang
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
+    document.getElementById('lang').textContent = lang === 'ar' ? 'English' : 'العربية'
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: (n) => (n.parentElement.closest('script, style, code, pre, option, #lang, [data-dynamic]') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
+    })
+    for (let node; (node = walker.nextNode()); ) {
+      if (!originals.has(node)) originals.set(node, node.nodeValue)
+      const original = originals.get(node)
+      const key = original.trim()
+      if (!key) continue
+      const [base, version] = key.split(' · v')
+      const translated = version ? `${tr(base)} · v${version}` : tr(key)
+      node.nodeValue = original.replace(key, translated)
+    }
+    for (const button of document.querySelectorAll('[data-skip]')) button.textContent = tr(button.closest('section').classList.contains('skipped') ? 'Edit' : 'Skip')
+    document.title = tr('Create a Masar app')
+    try { localStorage.setItem('masar-installer-lang', lang) } catch {}
+  }
+  document.getElementById('lang').addEventListener('click', () => applyLanguage(lang === 'ar' ? 'en' : 'ar'))
+
+  const TOKEN = '__TOKEN__'
+  const DEFAULTS = __DEFAULTS__
+  const form = document.getElementById('setup')
+  const value = (name) => form.elements[name]?.value?.trim() ?? ''
+  const checked = (name) => !!form.elements[name]?.checked
+  const radio = (name) => form.querySelector(`input[name="${name}"]:checked`)?.value
+
+  form.elements.name.value = DEFAULTS.name
+  form.elements.pm.value = DEFAULTS.pm
+  form.elements.timezone.value = DEFAULTS.timezone
+  form.elements.adminPassword.value = DEFAULTS.adminPassword
+
+  // Show fields that belong to the selected option only (data-when="db=postgres,mongodb").
+  const refresh = () => {
+    for (const el of form.querySelectorAll('[data-when]')) {
+      const [name, values] = el.dataset.when.split('=')
+      el.hidden = !values.split(',').includes(radio(name))
+    }
+    form.elements.url.placeholder = `http://localhost:${value('port') || 3000}`
+  }
+  form.addEventListener('change', refresh)
+  form.elements.port.addEventListener('input', () => {
+    const url = form.elements.url
+    if (/^http:\/\/localhost:\d*$/.test(url.value)) url.value = `http://localhost:${value('port')}`
+  })
+  refresh()
+  let saved = null
+  try { saved = localStorage.getItem('masar-installer-lang') } catch {}
+  applyLanguage(saved ?? (navigator.language?.startsWith('ar') ? 'ar' : 'en'))
+
+  for (const button of form.querySelectorAll('[data-skip]')) {
+    button.addEventListener('click', () => {
+      const section = button.closest('section')
+      section.classList.toggle('skipped')
+      button.textContent = tr(section.classList.contains('skipped') ? 'Edit' : 'Skip')
+    })
+  }
+
+  const skipped = (step) => form.querySelector(`section[data-step="${step}"]`).classList.contains('skipped')
+
+  function collect(useDefaults) {
+    const skip = (step) => useDefaults || skipped(step)
+    const locales = skip('languages') ? ['en', 'ar'] : [...form.querySelectorAll('input[name="locales"]:checked')].map((i) => i.value)
+    return {
+      name: value('name'),
+      port: Number(value('port')) || 3000,
+      url: value('url') || `http://localhost:${value('port') || 3000}`,
+      pm: value('pm'),
+      install: checked('install'),
+      db: skip('database') ? 'sqlite' : radio('db'),
+      databaseUrl: skip('database') ? '' : value('databaseUrl'),
+      locales,
+      locale: skip('languages') ? 'en' : value('locale'),
+      timezone: skip('languages') ? '' : value('timezone'),
+      mail: skip('mail')
+        ? { driver: 'log' }
+        : { driver: radio('mail'), from: value('mailFrom'), host: value('smtpHost'), port: Number(value('smtpPort')) || 587, user: value('smtpUser'), pass: value('smtpPass'), apiKey: value('resendKey') },
+      storage: skip('storage')
+        ? { driver: 'local' }
+        : { driver: radio('storage'), bucket: value('s3Bucket'), region: value('s3Region') || 'auto', endpoint: value('s3Endpoint'), url: value('s3Url'), key: value('s3Key'), secret: value('s3Secret') },
+      admin: skip('admin') ? { email: 'admin@example.com', password: 'password', seed: false } : { email: value('adminEmail'), password: value('adminPassword'), seed: checked('seed') },
+      agents: skip('agents') ? true : checked('agents'),
+    }
+  }
+
+  function validate(a) {
+    const errors = {}
+    if (!/^[a-z0-9][a-z0-9-_]*$/.test(a.name)) errors.project = 'Project name: use lowercase letters, numbers and dashes.'
+    if (!a.locales.length) errors.languages = 'Pick at least one language.'
+    else if (!a.locales.includes(a.locale)) errors.languages = 'The default language must be one of the picked languages.'
+    if (a.admin.password.length < 8 || !/.+@.+/.test(a.admin.email)) errors.admin = 'Admin: a valid email and a password of 8 characters or more.'
+    for (const el of form.querySelectorAll('[data-error]')) el.textContent = tr(errors[el.dataset.error] ?? '')
+    form.elements.name.classList.toggle('invalid', !!errors.project)
+    const first = Object.keys(errors)[0]
+    if (first) {
+      const section = form.querySelector(`[data-error="${first}"]`).closest('section')
+      section.classList.remove('skipped')
+      section.querySelector('[data-skip]') && (section.querySelector('[data-skip]').textContent = tr('Skip'))
+      section.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+    return !first
+  }
+
+  async function submit(useDefaults) {
+    const answers = collect(useDefaults)
+    if (!validate(answers)) return
+    for (const b of document.querySelectorAll('button')) b.disabled = true
+    const response = await fetch(`/create?token=${TOKEN}`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(answers) }).catch(() => null)
+    const body = response ? await response.json().catch(() => ({})) : { error: 'The installer stopped. Run the command again.' }
+    if (!response?.ok) {
+      for (const b of document.querySelectorAll('button')) b.disabled = false
+      const target = body.field ?? 'project'
+      const el = form.querySelector(`[data-error="${target}"]`)
+      el.textContent = tr(body.error)
+      el.closest('section').classList.remove('skipped')
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      return
+    }
+    form.hidden = true
+    document.getElementById('progress-title').textContent = tr('Creating your app')
+    document.getElementById('progress').hidden = false
+    window.scrollTo({ top: 0 })
+    poll()
+  }
+
+  form.addEventListener('submit', (e) => { e.preventDefault(); submit(false) })
+  document.getElementById('defaults').addEventListener('click', () => submit(true))
+
+  async function poll() {
+    let status
+    try {
+      status = await (await fetch(`/status?token=${TOKEN}`)).json()
+    } catch {
+      return setTimeout(poll, 1000)
+    }
+    const list = document.getElementById('steps')
+    list.innerHTML = ''
+    for (const step of status.steps) {
+      const li = document.createElement('li')
+      li.className = step.state
+      li.innerHTML = `<span class="dot">${step.state === 'done' ? '✓' : ''}</span>`
+      li.append(tr(step.label))
+      list.append(li)
+    }
+    if (!status.done) return setTimeout(poll, 600)
+    document.getElementById('progress-title').textContent = tr(`${status.name} is ready`)
+    document.getElementById('result').hidden = false
+    document.getElementById('result-text').textContent = tr('Run these in your terminal, then open the app in the browser:')
+    document.getElementById('commands').textContent = status.commands.join('\n')
+    if (status.warnings.length) {
+      const warning = document.getElementById('warning')
+      warning.hidden = false
+      warning.textContent = status.warnings.map(tr).join(' ')
+    }
+  }
+</script>
+</body>
+</html>
