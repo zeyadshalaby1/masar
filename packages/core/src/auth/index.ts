@@ -62,7 +62,8 @@ let dummyHash: Promise<string> | undefined
 // ── Sessions ───────────────────────────────────────────────────────────────
 const sha256 = (token: string) => createHash('sha256').update(token).digest('hex')
 const publicUser = ({ passwordHash: _, ...user }: RowOf<typeof users>): User => user
-const isApi = (context: RequestContext) => context.url.pathname.startsWith('/api/')
+// The path Hono routed on (decoded), so /%61pi/... cannot reach an API route with cookie auth.
+const isApi = (context: RequestContext) => context.c.req.path.startsWith('/api/')
 
 function tokenFrom(context: RequestContext): string | undefined {
   // /api/* accepts GET for every action, so a cookie there would make links into CSRF.
